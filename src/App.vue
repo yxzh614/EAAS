@@ -1,0 +1,43 @@
+<template>
+  <div id="app">
+      <el-container class="main">
+    <el-header>
+      <HeadBar/>
+    </el-header>
+    <el-container>
+      <el-aside>
+        <SideBar/>
+      </el-aside>
+      <el-main>
+        <router-view/>
+      </el-main>
+    </el-container>
+  </el-container>
+  </div>
+</template>
+
+<script>
+import SideBar from './components/SideBar'
+import HeadBar from './components/HeadBar'
+export default {
+  name: 'app',
+  components: {
+    SideBar,
+    HeadBar
+  }
+}
+</script>
+
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* text-align: center; */
+  color: #2c3e50;
+  /* margin-top: 60px; */
+}
+.el-header {
+  padding: 0;
+}
+</style>
