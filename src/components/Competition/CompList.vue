@@ -2,31 +2,31 @@
   <div>
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item> 
-      <el-breadcrumb-item>部门列表</el-breadcrumb-item>
+      <el-breadcrumb-item>竞赛列表</el-breadcrumb-item>
     </el-breadcrumb>
-    <el-card v-for="stuff in dataList" :key='stuff.stuffID' class="box-card">
+    <el-card v-for="comp in dataList" :key='comp.stuffID' class="box-card">
       <div slot="header" class="clearfix">
-      <span>{{stuff.name}}</span>
-      <el-button style="float: right; padding: 3px 0" type="text" @click="goDetail(stuff.stuffID)">详细信息</el-button>
+      <span>{{comp.name}}</span>
+      <el-button style="float: right; padding: 3px 0" type="text" @click="goDetail(comp.id)">详细信息</el-button>
       </div>
       <img class="stuff-pic" src="@/assets/logo.png" alt="">
-      <div class="text item">简介：{{stuff.information}}</div>
-      <div class="text item">部门人数：{{stuff.memberAmount}}</div>
+      <div class="text item">简介：{{comp.information}}</div>
+      <div class="text item">报名截止日期：{{comp.endDate}}</div>
     </el-card>
   </div>
 </template>
 <script>
 export default {
-  name: 'StuffList',
+  name: 'CompList',
   data () {
     return {
       msg: '2233',
       dataList: [
         {
-          stuffID: 0,
+          id: 0,
           name: '',
           information: '',
-          memberAmount: 0
+          endDate: 0
         }
       ]
     }
@@ -34,23 +34,23 @@ export default {
   computed: {
   },
   methods: {
-    goDetail: function (id) {
-      this.$router.push({name: 'StuffDetail', params: {id: id}})
+    goDetail: function (ID) {
+      this.$router.push({name: 'CompDetail', params: {ID: ID}})
     }
   },
   mounted () {
     this.dataList = [
       {
-        stuffID: 1,
-        name: '人事部',
-        information: '人事部是一个企业或者团体的人力资源和企业公共事务的管理部门 。现在为强化人的重要性，分离出人力资源部门。',
-        memberAmount: 100
+        id: 1,
+        name: '中国大学生计算机设计大赛',
+        information: '中国大学生计算机设计大赛',
+        endDate: '2017-01-01'
       },
       {
-        stuffID: 2,
-        name: 'stuff1',
+        id: 2,
+        name: 'bisai2',
         information: 'info1',
-        memberAmount: 100
+        endDate: '2017-01-01'
       }
     ]
   }
@@ -73,6 +73,7 @@ export default {
   .clearfix:after {
     clear: both
   }
+
 </style>
 <style scoped>
 .el-card {

@@ -11,9 +11,7 @@
       <el-submenu index="1-4">
         <template slot="title">部门管理</template>
         <el-menu-item index="/Stuff">部门信息</el-menu-item>
-        <el-menu-item index="/x">人员信息</el-menu-item>
-        <el-menu-item index="/x">社团招新</el-menu-item>
-        <el-menu-item index="/x">新人信息</el-menu-item>
+        <el-menu-item index="/Stuff/New">社团招新</el-menu-item>
       </el-submenu>
     </el-submenu>
     <el-submenu index="3">
@@ -40,7 +38,8 @@
       <template slot="title">竞赛管理</template>
       <el-menu-item-group>
         <template slot="title">竞赛通知</template>
-        <el-menu-item index="/Index/Stuff">发布通知</el-menu-item>
+        <el-menu-item index="/Competition">竞赛列表</el-menu-item>
+        <el-menu-item index="/Comp/New">发布竞赛</el-menu-item>
       </el-menu-item-group>
       <el-menu-item-group>
         <template slot="title">方案发布</template>
@@ -114,7 +113,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 span {
   float: left;
 }

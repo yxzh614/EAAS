@@ -120,3 +120,31 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
   - 竞赛报名
 - 加入我们
   - 招新期间开放
+
+
+`
+POST:servelet/getDeptList
+response:[
+  {
+    id: '',
+    name: '',
+    info: '',
+    population: ''
+  }
+]
+POST:servelet/getDeptDetail
+response:{
+  id: '',
+  name: '',
+  info: '',
+  population: '',
+  headerName: '',
+  headerTel: '',
+  memberList: [
+    id: '',
+    name: '',
+    enterYear: '',
+    job: '',
+  ]
+}
+`

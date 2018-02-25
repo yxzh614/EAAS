@@ -4,8 +4,8 @@
     style="width: 100%">
     <span>22{{deptId}}</span>
     <el-table-column
-      prop="date"
-      label="日期"
+      prop="id"
+      label="学号"
       width="180">
     </el-table-column>
     <el-table-column
@@ -14,8 +14,12 @@
       width="180">
     </el-table-column>
     <el-table-column
-      prop="address"
-      label="地址">
+      prop="enterYear"
+      label="入团时间">
+    </el-table-column>
+    <el-table-column
+      prop="job"
+      label="职务">
     </el-table-column>
   </el-table>
 </template>
@@ -24,21 +28,25 @@ export default {
   data () {
     return {
       tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
+        id: '1503050115',
+        name: '岳贤哲',
+        enterYear: '2016',
+        job: '社团成员'
       }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
+        id: '1503050115',
+        name: '岳贤哲',
+        enterYear: '2016',
+        job: '社团成员'
       }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
+        id: '1503050115',
+        name: '岳贤哲',
+        enterYear: '2016',
+        job: '社团成员'
       }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
+        id: '1503050115',
+        name: '岳贤哲',
+        enterYear: '2016',
+        job: '社团成员'
       }]
     }
   },

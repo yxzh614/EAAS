@@ -24,6 +24,12 @@ export default {
   components: {
     SideBar,
     HeadBar
+  },
+  beforeCreate () {
+    this.$router.beforeEach((to, from, next) => {
+      console.log(to)
+      next()
+    })
   }
 }
 </script>
@@ -39,5 +45,8 @@ export default {
 }
 .el-header {
   padding: 0;
+}
+.el-breadcrumb {
+  margin-bottom: 15px;
 }
 </style>
