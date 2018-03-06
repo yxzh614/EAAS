@@ -44,10 +44,10 @@ export default {
   },
   methods: {
     onSubmit () {
-        this.$message({
-          message: '成功发布了比赛！',
-          type: 'success'
-        })
+      this.$message({
+        message: '成功发布了比赛！',
+        type: 'success'
+      })
       this.$router.push({name: 'CompList'})
     },
     handleChange () {
