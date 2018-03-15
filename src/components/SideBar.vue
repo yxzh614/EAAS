@@ -12,16 +12,16 @@
         <template slot="title">人员列表</template>
         <el-menu-item index="/Stuff">2017</el-menu-item>
       </el-submenu>
-      <el-menu-item index="/Stuff/New">社团招新</el-menu-item>
-      <el-menu-item index="/Stuff/New">换届选举</el-menu-item>
+      <el-menu-item index="/Member/New">社团招新</el-menu-item>
+      <el-menu-item index="/Member/Elect">换届选举</el-menu-item>
     </el-submenu>
     <el-submenu index="3">
       <template slot="title">物资管理</template>
-      <el-menu-item index="/Index/Stuff">物资清单</el-menu-item>
-      <el-menu-item index="/Index/Stuff">借取物资</el-menu-item>
-      <el-menu-item index="/Index/Stuff">归还物资</el-menu-item>
+      <el-menu-item index="/Good/List">物资清单</el-menu-item>
+      <el-menu-item index="/Good/Borrow">借取物资</el-menu-item>
+      <el-menu-item index="/Good/GiveBack">归还物资</el-menu-item>
       <el-menu-item index="/Index/Stuff">入库管理</el-menu-item>
-      <el-menu-item index="/Index/Stuff">物资借取记录</el-menu-item>
+      <el-menu-item index="/Good/Records">物资借取记录</el-menu-item>
       <el-menu-item index="/Index/Stuff">资金流动记录（加钱按钮</el-menu-item>
 
     </el-submenu>
@@ -65,7 +65,7 @@
   </el-menu>
 </template>
 <script>
-import axios from 'axios'
+import axios from '../services/my-axios'
 export default {
   name: 'navbar',
   data () {
@@ -87,11 +87,10 @@ export default {
   },
   methods: {
     handleSelect (index) {
-
     },
     handleOpen (key, keyPath) {
       if (key === '/Stuff') {
-        console.log(axios)
+        axios.init()
       }
     },
     handleClose (key, keyPath) {

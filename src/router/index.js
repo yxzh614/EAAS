@@ -5,6 +5,14 @@ import Index from '@/components/Index'
 import StuffList from '@/components/Stuff/StuffList'
 import StuffDetail from '@/components/Stuff/StuffDetail'
 
+import MemberNew from '@/components/Member/New'
+import MemberElect from '@/components/Member/Elect'
+
+import GoodList from '@/components/Good/GoodList'
+import GoodBorrow from '@/components/Good/Borrow'
+import GoodGiveBack from '@/components/Good/GiveBack'
+import GoodRecords from '@/components/Good/Records'
+
 import CompList from '@/components/Competition/CompList'
 import CompDetail from '@/components/Competition/CompDetail'
 import NewComp from '@/components/Competition/NewComp'
@@ -33,6 +41,36 @@ export default new Router({
       name: 'StuffDetail',
       component: StuffDetail, // 部门详情
       props: true
+    },
+    {
+      path: '/Member/New',
+      name: 'MemberNew',
+      component: MemberNew
+    },
+    {
+      path: '/Member/Elect',
+      name: 'MemberElect',
+      component: MemberElect
+    },
+    {
+      path: '/Good/List',
+      name: 'GoodList',
+      component: GoodList
+    },
+    {
+      path: '/Good/Borrow',
+      name: 'GoodBorrow',
+      component: GoodBorrow
+    },
+    {
+      path: '/Good/GiveBack',
+      name: 'GoodGiveBack',
+      component: GoodGiveBack
+    },
+    {
+      path: '/Good/Records',
+      name: 'GoodRecords',
+      component: GoodRecords
     },
     {
       path: '/Competition',
