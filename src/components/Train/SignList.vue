@@ -36,7 +36,7 @@
 
 <script>
   export default {
-    data() {
+    data () {
       return {
         tableData: [{
           id: '1501010101',

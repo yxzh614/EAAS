@@ -50,11 +50,11 @@ export default {
   },
   mounted () {
     this.trainDetail = {
-        id: this.$route.params.id,
-        name: this.$route.params.id,
-        info: this.$route.params.id,
-        detail: this.$route.params.id,
-        date: this.$route.params.id
+      id: this.$route.params.id,
+      name: this.$route.params.id,
+      info: this.$route.params.id,
+      detail: this.$route.params.id,
+      date: this.$route.params.id
     }
   }
 }

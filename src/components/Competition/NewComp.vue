@@ -11,12 +11,25 @@
       <el-form-item label="比赛简介">
         <el-input></el-input>
       </el-form-item>
-      <el-form-item label="报名截止日期">
+      <el-form-item label="比赛日期">
         <el-date-picker
           v-model="date"
           type="date"
           placeholder="选择日期">
         </el-date-picker>
+      </el-form-item>
+      <el-form-item label="报名截止日期">
+        <el-date-picker
+          v-model="date2"
+          type="date"
+          placeholder="选择日期">
+        </el-date-picker>
+      </el-form-item>
+      <el-form-item label="队伍人数限制">
+        <el-input-number v-model="num1" @change="handleChange" :min="1" :max="10" label=""></el-input-number>
+      </el-form-item>
+      <el-form-item label="">
+        <el-button>确定</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -33,7 +46,9 @@ export default {
         info: '',
         name: ''
       },
-      date: ''
+      date: '',
+      date2: '',
+      num1: 0
     }
   },
   methods: {
