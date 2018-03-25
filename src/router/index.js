@@ -27,6 +27,7 @@ import SignUpload from '@/components/Train/SignUpload'
 import SignList from '@/components/Train/SignList'
 
 import User from '@/components/User/Index'
+import Sign from '@/components/User/Sign'
 
 Vue.use(Router)
 export default new Router({
@@ -142,6 +143,11 @@ export default new Router({
       path: '/User',
       name: 'User',
       component: User
+    },
+    {
+      path: '/Sign',
+      name: 'Sign',
+      component: Sign
     }
   ]
 })

@@ -19,6 +19,8 @@
 <script>
 import SideBar from './components/SideBar'
 import HeadBar from './components/HeadBar'
+
+import Con from './components/User/Control'
 export default {
   name: 'app',
   components: {
@@ -27,7 +29,13 @@ export default {
   },
   beforeCreate () {
     this.$router.beforeEach((to, from, next) => {
-      // usercontrol
+      console.log(to.name)
+      console.log(Con.data.isLogged)
+      if (to.name !== 'Sign') {
+        if (!Con.data.isLogged) {
+          next('/Sign')
+        }
+      }
       next()
     })
   }
