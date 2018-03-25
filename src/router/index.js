@@ -22,6 +22,9 @@ import NewComp from '@/components/Competition/NewComp'
 
 import NewTrain from '@/components/Train/NewTrain'
 import TrainList from '@/components/Train/TrainList'
+import TrainDetail from '@/components/Train/TrainDetail'
+import SignUpload from '@/components/Train/SignUpload'
+import SignList from '@/components/Train/SignList'
 
 import User from '@/components/User/Index'
 
@@ -118,6 +121,22 @@ export default new Router({
       path: '/Train/List',
       name: 'TrainList',
       component: TrainList
+    },
+    {
+      path: '/Train/Detail/:id',
+      name: 'TrainDetail',
+      component: TrainDetail,
+      props: true
+    },
+    {
+      path: '/Train/SignUpload',
+      name: 'SignUpload',
+      component: SignUpload
+    },
+    {
+      path: '/Train/SignList',
+      name: 'SignList',
+      component: SignList
     },
     {
       path: '/User',

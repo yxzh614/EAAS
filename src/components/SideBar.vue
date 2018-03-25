@@ -25,42 +25,16 @@
       <el-menu-item index="/Good/MoneyRecord">资金记录</el-menu-item>
     </el-submenu>
     <el-submenu index="4">
-      <template slot="title">竞赛管理</template>
-      <el-menu-item-group>
         <template slot="title">竞赛通知</template>
         <el-menu-item index="/Competition">竞赛列表</el-menu-item>
         <el-menu-item index="/Comp/New">发布竞赛</el-menu-item>
-      </el-menu-item-group>
-      <el-menu-item-group>
-        <template slot="title">方案发布</template>
-        <el-menu-item index="/Index/Stuff">提交方案</el-menu-item>
-        <el-menu-item index="/Index/Stuff">招募成员</el-menu-item>
-      </el-menu-item-group>
-      <el-menu-item-group>
-        <template slot="title">报名管理</template>
-        <el-menu-item index="/Index/Stuff">报名信息</el-menu-item>
-      </el-menu-item-group>
-      <el-menu-item-group>
-        <template slot="title">奖项管理</template>
-        <el-menu-item index="/Index/Stuff">颁布奖项</el-menu-item>
-      </el-menu-item-group>
     </el-submenu>
     <el-submenu index="5">
       <template slot="title">培训管理</template>
       <el-menu-item index="/Train/New">发布培训</el-menu-item>
       <el-menu-item index="/Train/List">培训列表</el-menu-item>
-      <el-menu-item-group>
-        <template slot="title">培训发布</template>
-      </el-menu-item-group>
-      <el-menu-item-group>
-        <template slot="title">报名管理</template>
-      </el-menu-item-group>
-      <el-menu-item-group>
-        <template slot="title">签到管理</template>
-      </el-menu-item-group>
-      <el-menu-item-group>
-        <template slot="title">视频上传</template>
-      </el-menu-item-group>
+      <el-menu-item index="/Train/SignUpload">签到上传</el-menu-item>
+      <el-menu-item index="/Train/SignList">签到记录</el-menu-item>
     </el-submenu>
   </el-menu>
 </template>

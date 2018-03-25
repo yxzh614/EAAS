@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     goDetail: function (ID) {
-      this.$router.push({name: 'CompDetail', params: {ID: ID}})
+      this.$router.push({name: 'TrainDetail', params: {id: ID}})
     }
   },
   mounted () {

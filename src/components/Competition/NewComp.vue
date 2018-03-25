@@ -4,9 +4,20 @@
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>发布竞赛</el-breadcrumb-item>
     </el-breadcrumb>
-    <el-button>上传报名信息表格</el-button>
     <el-form ref="form" :model="form" label-width="100px">
-
+      <el-form-item label="比赛名称">
+        <el-input></el-input>
+      </el-form-item>
+      <el-form-item label="比赛简介">
+        <el-input></el-input>
+      </el-form-item>
+      <el-form-item label="报名截止日期">
+        <el-date-picker
+          v-model="date"
+          type="date"
+          placeholder="选择日期">
+        </el-date-picker>
+      </el-form-item>
     </el-form>
   </div>
 </template>
@@ -21,7 +32,8 @@ export default {
         enterDeadline: '',
         info: '',
         name: ''
-      }
+      },
+      date: ''
     }
   },
   methods: {

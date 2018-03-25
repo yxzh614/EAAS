@@ -14,7 +14,6 @@
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item command="changeLeader">修改信息</el-dropdown-item>
-            <el-dropdown-item command="changeLeader">修改信息</el-dropdown-item>
             <el-dropdown-item command="getFresh">关闭比赛</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
