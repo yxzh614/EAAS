@@ -2,22 +2,22 @@
   <div>
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>竞赛列表</el-breadcrumb-item>
+      <el-breadcrumb-item>培训列表</el-breadcrumb-item>
     </el-breadcrumb>
-    <el-card v-for="comp in dataList" :key='comp.stuffID' class="box-card">
+    <el-card v-for="train in dataList" :key='train.stuffID' class="box-card">
       <div slot="header" class="clearfix">
-      <span>{{comp.name}}</span>
-      <el-button style="float: right; padding: 3px 0" type="text" @click="goDetail(comp.id)">详细信息</el-button>
+      <span>{{train.name}}</span>
+      <el-button style="float: right; padding: 3px 0" type="text" @click="goDetail(train.id)">详细信息</el-button>
       </div>
       <img class="stuff-pic" src="@/assets/logo.png" alt="">
-      <div class="text item">简介：{{comp.information}}</div>
-      <div class="text item">报名截止日期：{{comp.endDate}}</div>
+      <div class="text item">简介：{{train.information}}</div>
+      <div class="text item">培训日期：{{train.startDate}}</div>
     </el-card>
   </div>
 </template>
 <script>
 export default {
-  name: 'CompList',
+  name: 'TrainList',
   data () {
     return {
       msg: '2233',
@@ -26,7 +26,7 @@ export default {
           id: 0,
           name: '',
           information: '',
-          endDate: 0
+          startDate: 0
         }
       ]
     }
@@ -42,15 +42,15 @@ export default {
     this.dataList = [
       {
         id: 1,
-        name: '中国大学生计算机设计大赛',
+        name: '数据结构01',
         information: '中国大学生计算机设计大赛',
-        endDate: '2017-01-01'
+        startDate: '2017-01-01'
       },
       {
         id: 2,
         name: 'bisai2',
         information: 'info1',
-        endDate: '2017-01-01'
+        startDate: '2017-01-01'
       }
     ]
   }

@@ -4,6 +4,7 @@
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item> 
       <el-breadcrumb-item>物资列表</el-breadcrumb-item>
     </el-breadcrumb>
+    <p>剩余资金：{{money}}元</p>
     <el-table
       :data="goodsList"
       style="width: 100%">
@@ -28,6 +29,14 @@
           <img :src="scope.row.goodsJpgUrl">
         </template>
       </el-table-column>
+      <el-table-column label="操作">
+        <template slot-scope="scope">
+          <el-button
+            size="mini"
+            type="danger"
+            @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
@@ -43,7 +52,16 @@ export default {
         goodsCount: null,
         isXiaoHao: null,
         goodsJpgUrl: null
-      }]
+      }],
+      money: 2000
+    }
+  },
+  methods: {
+    handleDelete (index, row) {
+      this.deleteGood(row.goodsId)
+    },
+    deleteGood (goodId) {
+      console.log(`删除物资:ID=${goodId}`)
     }
   },
   mounted () {
@@ -89,5 +107,8 @@ export default {
 <style scoped>
 img {
   width: 70px;
+}
+p {
+  float: right;
 }
 </style>

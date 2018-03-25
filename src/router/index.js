@@ -7,15 +7,21 @@ import StuffDetail from '@/components/Stuff/StuffDetail'
 
 import MemberNew from '@/components/Member/New'
 import MemberElect from '@/components/Member/Elect'
+import MemberOfYear from '@/components/Member/MemberOfYear'
 
 import GoodList from '@/components/Good/GoodList'
 import GoodBorrow from '@/components/Good/Borrow'
 import GoodGiveBack from '@/components/Good/GiveBack'
 import GoodRecords from '@/components/Good/Records'
+import GoodNewItem from '@/components/Good/NewItem'
+import GoodMoneyRecord from '@/components/Good/MoneyRecord'
 
 import CompList from '@/components/Competition/CompList'
 import CompDetail from '@/components/Competition/CompDetail'
 import NewComp from '@/components/Competition/NewComp'
+
+import NewTrain from '@/components/Train/NewTrain'
+import TrainList from '@/components/Train/TrainList'
 
 import User from '@/components/User/Index'
 
@@ -41,6 +47,11 @@ export default new Router({
       name: 'StuffDetail',
       component: StuffDetail, // 部门详情
       props: true
+    },
+    {
+      path: '/Member/year/:year',
+      name: 'MemberOfYear',
+      component: MemberOfYear
     },
     {
       path: '/Member/New',
@@ -73,6 +84,16 @@ export default new Router({
       component: GoodRecords
     },
     {
+      path: '/Good/NewItem',
+      name: 'GoodNewItem',
+      component: GoodNewItem
+    },
+    {
+      path: '/Good/MoneyRecord',
+      name: 'GoodMoneyRecord',
+      component: GoodMoneyRecord
+    },
+    {
       path: '/Competition',
       name: 'CompList',
       component: CompList // 比赛列表
@@ -87,6 +108,16 @@ export default new Router({
       path: '/Comp/New',
       name: 'NewComp',
       component: NewComp // 新建比赛
+    },
+    {
+      path: '/Train/new',
+      name: 'NewTrain',
+      component: NewTrain
+    },
+    {
+      path: '/Train/List',
+      name: 'TrainList',
+      component: TrainList
     },
     {
       path: '/User',

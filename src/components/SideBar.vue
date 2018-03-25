@@ -10,7 +10,7 @@
       <template slot="title">人员管理</template>
       <el-submenu index="1-4">
         <template slot="title">人员列表</template>
-        <el-menu-item index="/Stuff">2017</el-menu-item>
+        <el-menu-item v-for="year in routeByYear" :key = "year.year" :index="year.r">{{year.year}}</el-menu-item>
       </el-submenu>
       <el-menu-item index="/Member/New">社团招新</el-menu-item>
       <el-menu-item index="/Member/Elect">换届选举</el-menu-item>
@@ -20,10 +20,9 @@
       <el-menu-item index="/Good/List">物资清单</el-menu-item>
       <el-menu-item index="/Good/Borrow">借取物资</el-menu-item>
       <el-menu-item index="/Good/GiveBack">归还物资</el-menu-item>
-      <el-menu-item index="/Index/Stuff">入库管理</el-menu-item>
+      <el-menu-item index="/Good/NewItem">入库管理</el-menu-item>
       <el-menu-item index="/Good/Records">物资借取记录</el-menu-item>
-      <el-menu-item index="/Index/Stuff">资金流动记录（加钱按钮</el-menu-item>
-
+      <el-menu-item index="/Good/MoneyRecord">资金记录</el-menu-item>
     </el-submenu>
     <el-submenu index="4">
       <template slot="title">竞赛管理</template>
@@ -48,9 +47,10 @@
     </el-submenu>
     <el-submenu index="5">
       <template slot="title">培训管理</template>
+      <el-menu-item index="/Train/New">发布培训</el-menu-item>
+      <el-menu-item index="/Train/List">培训列表</el-menu-item>
       <el-menu-item-group>
         <template slot="title">培训发布</template>
-        <el-menu-item index="/Index/Stuff">发布通知</el-menu-item>
       </el-menu-item-group>
       <el-menu-item-group>
         <template slot="title">报名管理</template>
@@ -71,6 +71,7 @@ export default {
   data () {
     return {
       years: [],
+      routeByYear: [],
       routeByMenu: true,
       activeIndex: '1',
       activeIndex22: '/Index',
@@ -86,7 +87,7 @@ export default {
     }
   },
   methods: {
-    handleSelect (index) {
+    handleSelect (index, indexPath) {
     },
     handleOpen (key, keyPath) {
       if (key === '/Stuff') {
@@ -103,6 +104,16 @@ export default {
     },
     goHome () {
       this.$router.push({ path: `/` })
+    }
+  },
+  mounted () {
+    let years = [14, 15, 16, 17]
+    for (let year of years) {
+      console.log(year)
+      this.routeByYear.push({
+        year: year,
+        r: `/Member/year/${year}`
+      })
     }
   }
 }

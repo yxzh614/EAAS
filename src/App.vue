@@ -27,7 +27,7 @@ export default {
   },
   beforeCreate () {
     this.$router.beforeEach((to, from, next) => {
-      console.log(to)
+      // usercontrol
       next()
     })
   }

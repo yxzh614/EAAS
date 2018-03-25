@@ -10,13 +10,17 @@
       :on-preview="handlePreview"
       :on-remove="handleRemove"
       :before-remove="beforeRemove"
-      multiple
       :limit="1"
+      drag
       :on-exceed="handleExceed"
       :file-list="fileList">
-      <el-button size="small" type="primary">点击上传</el-button>
-      <div slot="tip" class="el-upload__tip">只能上传excel文件</div>
+      <i class="el-icon-upload"></i>
+      <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+      <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
     </el-upload>
+    <el-tooltip class="item" effect="dark" content="xxx.xls" placement="bottom-start">
+      <el-button type="primary">下载模板</el-button>
+    </el-tooltip>
   </div>
 </template>
 
@@ -46,3 +50,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.el-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+</style>
