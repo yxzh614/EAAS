@@ -33,6 +33,10 @@ export default {
       console.log(Con.data.isLogged)
       if (to.name !== 'Sign') {
         if (!Con.data.isLogged) {
+          this.$message({
+            message: '请先登录',
+            type: 'warning'
+          })
           next('/Sign')
         }
       }

@@ -29,12 +29,15 @@ import SignList from '@/components/Train/SignList'
 import User from '@/components/User/Index'
 import Sign from '@/components/User/Sign'
 
+import TZList from '@/components/TongZhi/TZList'
+import TZDetail from '@/components/TongZhi/TZDetail'
+
 Vue.use(Router)
 export default new Router({
   routes: [
     {
       path: '/',
-      redirect: 'Index'
+      redirect: '/Sign' // 重定向到登陆页
     },
     {
       path: '/Index',
@@ -44,58 +47,58 @@ export default new Router({
     {
       path: '/Stuff',
       name: 'StuffList',
-      component: StuffList // 部门
+      component: StuffList // 部门 不用
     },
     {
       path: '/Stuff/Detail/:id',
       name: 'StuffDetail',
-      component: StuffDetail, // 部门详情
+      component: StuffDetail, // 部门详情 不用
       props: true
     },
     {
       path: '/Member/year/:year',
       name: 'MemberOfYear',
-      component: MemberOfYear
+      component: MemberOfYear // 每届成员
     },
     {
       path: '/Member/New',
       name: 'MemberNew',
-      component: MemberNew
+      component: MemberNew // 添加新成员
     },
     {
       path: '/Member/Elect',
       name: 'MemberElect',
-      component: MemberElect
+      component: MemberElect // 换届选举
     },
     {
       path: '/Good/List',
       name: 'GoodList',
-      component: GoodList
+      component: GoodList // 物资列表
     },
     {
       path: '/Good/Borrow',
       name: 'GoodBorrow',
-      component: GoodBorrow
+      component: GoodBorrow // 借取物资
     },
     {
       path: '/Good/GiveBack',
       name: 'GoodGiveBack',
-      component: GoodGiveBack
+      component: GoodGiveBack // 归还物资
     },
     {
       path: '/Good/Records',
       name: 'GoodRecords',
-      component: GoodRecords
+      component: GoodRecords // 物品借取记录
     },
     {
       path: '/Good/NewItem',
       name: 'GoodNewItem',
-      component: GoodNewItem
+      component: GoodNewItem // 添加新物资
     },
     {
       path: '/Good/MoneyRecord',
       name: 'GoodMoneyRecord',
-      component: GoodMoneyRecord
+      component: GoodMoneyRecord // 资金使用记录
     },
     {
       path: '/Competition',
@@ -116,38 +119,49 @@ export default new Router({
     {
       path: '/Train/new',
       name: 'NewTrain',
-      component: NewTrain
+      component: NewTrain // 新建培训
     },
     {
       path: '/Train/List',
       name: 'TrainList',
-      component: TrainList
+      component: TrainList // 培训列表
     },
     {
       path: '/Train/Detail/:id',
       name: 'TrainDetail',
-      component: TrainDetail,
+      component: TrainDetail, // 培训详情
       props: true
     },
     {
       path: '/Train/SignUpload',
       name: 'SignUpload',
-      component: SignUpload
+      component: SignUpload // 上传签到表
     },
     {
       path: '/Train/SignList',
       name: 'SignList',
-      component: SignList
+      component: SignList // 签到列表
     },
     {
       path: '/User',
       name: 'User',
-      component: User
+      component: User // 用户
     },
     {
       path: '/Sign',
       name: 'Sign',
-      component: Sign
+      component: Sign // 登录
+    },
+    {
+      path: '/TongZhi/List',
+      name: 'TZList',
+      component: TZList // 通知列表
+    },
+    {
+      path: '/TongZhi/Detail',
+      name: 'TZDetail',
+      component: TZDetail, // 通知信息
+      props: true
     }
   ]
 })

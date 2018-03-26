@@ -25,7 +25,7 @@
       <el-menu-item index="/Good/MoneyRecord">资金记录</el-menu-item>
     </el-submenu>
     <el-submenu index="4">
-        <template slot="title">竞赛通知</template>
+        <template slot="title">竞赛管理</template>
         <el-menu-item index="/Competition">竞赛列表</el-menu-item>
         <el-menu-item index="/Comp/New">发布竞赛</el-menu-item>
     </el-submenu>
@@ -35,6 +35,10 @@
       <el-menu-item index="/Train/List">培训列表</el-menu-item>
       <el-menu-item index="/Train/SignUpload">签到上传</el-menu-item>
       <el-menu-item index="/Train/SignList">签到记录</el-menu-item>
+    </el-submenu>
+    <el-submenu index="6">
+      <template slot="title">通知管理</template>
+      <el-menu-item index="/TongZhi/List">通知列表</el-menu-item>
     </el-submenu>
   </el-menu>
 </template>

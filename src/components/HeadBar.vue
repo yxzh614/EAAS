@@ -14,8 +14,9 @@
   background-color="#545c64"
   text-color="#fff"
   active-text-color="#FFFFFF">
-  <el-menu-item index="0">INDEX</el-menu-item>
-  <el-menu-item class="right" index="1">用户中心</el-menu-item>
+  <el-menu-item index="/Index">主页</el-menu-item>
+  <!-- <el-menu-item class="right" index="/Sign">登录</el-menu-item> -->
+  <p>电子协会管理系统</p>
 </el-menu>
 </template>
 <script>
@@ -33,7 +34,7 @@ export default {
   },
   methods: {
     handleSelect: function (index) {
-      this.$router.push({name: 'User'})
+      this.$router.push({name: 'Index'})
     }
   }
 }
@@ -47,5 +48,9 @@ header > h1 > a {
 .right {
   float: right;
 }
+p {
+  color: white;
+  font-size: 18px;
+  text-align: center;
+}
 </style>
-

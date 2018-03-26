@@ -1,5 +1,5 @@
 <template>
-
+  <img src="../assets/logo2.jpg" alt="">
 </template>
 
 <script>
@@ -35,5 +35,10 @@ li {
 }
 a {
   color: #42b983;
+}
+img {
+  width: 50%;
+  margin-left: 18%;
+  margin-top: 5%;
 }
 </style>
