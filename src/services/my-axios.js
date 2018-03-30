@@ -1,8 +1,7 @@
 import axios from 'axios'
 export default {
-  init () {
-    console.log(axios)
-    console.log(a)
+  getths () {
+    return axios.get('/getths')
   }
 }
-let a = 1
+axios.defaults.baseURL = 'http://127.0.0.1:8080'

@@ -68,9 +68,6 @@ export default {
     handleSelect (index, indexPath) {
     },
     handleOpen (key, keyPath) {
-      if (key === '/Stuff') {
-        axios.init()
-      }
     },
     handleClose (key, keyPath) {
       console.log(key, keyPath)
@@ -85,14 +82,18 @@ export default {
     }
   },
   mounted () {
-    let years = [14, 15, 16, 17]
-    for (let year of years) {
-      console.log(year)
-      this.routeByYear.push({
-        year: year,
-        r: `/Member/year/${year}`
-      })
-    }
+    axios.getths().then(_ => {
+      let data = _.data
+      console.log(data)
+      let years = data.result
+      for (let year of years) {
+        console.log(year)
+        this.routeByYear.push({
+          year: year,
+          r: `/Member/year/${year}`
+        })
+      }
+    })
   }
 }
 </script>
