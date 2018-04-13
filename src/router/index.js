@@ -101,6 +101,10 @@ export default new Router({
       component: GoodMoneyRecord // 资金使用记录
     },
     {
+      path: '/Good/AddMoney',
+      name: 'AddMoney'
+    },
+    {
       path: '/Competition',
       name: 'CompList',
       component: CompList // 比赛列表
