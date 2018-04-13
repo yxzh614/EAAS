@@ -4,6 +4,7 @@
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item> 
       <el-breadcrumb-item>资金记录</el-breadcrumb-item>
     </el-breadcrumb>
+    <el-button @click="goNewMoney">添加</el-button>
     <el-table
       :data="tableData"
       style="width: 100%">
@@ -50,6 +51,17 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    goNewMoney () {
+      this.$router.push({name: 'NewMoney'})
+    }
   }
 }
 </script>
+
+<style scoped>
+.el-button {
+  float: right;
+}
+</style>

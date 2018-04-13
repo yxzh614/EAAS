@@ -2,6 +2,18 @@
 
 > EAAS from shenL
 
+接口定义
+```
+添加新比赛 /addcompetation POST
+req
+  comName: string
+  comTime: string
+  fuJian1: file
+  explain: string
+  memberLimit: int
+res
+```
+
 ## Build Setup
 
 ###
@@ -122,7 +134,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
   - 招新期间开放
 
 
-`
+```
 POST:servelet/getDeptList
 response:[
   {
@@ -147,4 +159,4 @@ response:{
     job: '',
   ]
 }
-`
+```

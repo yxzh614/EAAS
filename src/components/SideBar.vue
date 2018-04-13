@@ -18,9 +18,10 @@
     <el-submenu index="3">
       <template slot="title">物资管理</template>
       <el-menu-item index="/Good/List">物资清单</el-menu-item>
+      <el-menu-item index="/Good/NewItem">添加物资</el-menu-item>
+      <el-menu-item index="/Good/Buy">购买物资</el-menu-item>
       <el-menu-item index="/Good/Borrow">借取物资</el-menu-item>
       <el-menu-item index="/Good/GiveBack">归还物资</el-menu-item>
-      <el-menu-item index="/Good/NewItem">入库管理</el-menu-item>
       <el-menu-item index="/Good/Records">物资借取记录</el-menu-item>
       <el-menu-item index="/Good/MoneyRecord">资金记录</el-menu-item>
     </el-submenu>
@@ -35,6 +36,8 @@
       <el-menu-item index="/Train/List">培训列表</el-menu-item>
       <el-menu-item index="/Train/SignUpload">签到上传</el-menu-item>
       <el-menu-item index="/Train/SignList">签到记录</el-menu-item>
+      <el-menu-item index="/Train/Elect">年度评选</el-menu-item>
+      <el-menu-item index="/Train/Sat">活动统计</el-menu-item>
     </el-submenu>
     <el-submenu index="6">
       <template slot="title">通知管理</template>
@@ -43,7 +46,7 @@
   </el-menu>
 </template>
 <script>
-import axios from '../services/my-axios'
+import myAxs from '../services/my-axios'
 export default {
   name: 'navbar',
   data () {
@@ -68,9 +71,6 @@ export default {
     handleSelect (index, indexPath) {
     },
     handleOpen (key, keyPath) {
-      if (key === '/Stuff') {
-        axios.init()
-      }
     },
     handleClose (key, keyPath) {
       console.log(key, keyPath)
@@ -85,14 +85,18 @@ export default {
     }
   },
   mounted () {
-    let years = [14, 15, 16, 17]
-    for (let year of years) {
-      console.log(year)
-      this.routeByYear.push({
-        year: year,
-        r: `/Member/year/${year}`
-      })
-    }
+    myAxs.getYears().then(_ => {
+      let data = _.data
+      console.log(data)
+      let years = data.result
+      for (let year of years) {
+        console.log(year)
+        this.routeByYear.push({
+          year: year,
+          r: `/Member/year/${year}`
+        })
+      }
+    })
   }
 }
 </script>
