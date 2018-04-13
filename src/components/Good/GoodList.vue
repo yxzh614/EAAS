@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item> 
+      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>物资列表</el-breadcrumb-item>
     </el-breadcrumb>
     <p>剩余资金：{{money}}元</p>
@@ -30,7 +30,19 @@
       </el-table-column>
       <el-table-column
         prop="isXiaoHao"
+        label="可消耗">
+      </el-table-column>
+      <el-table-column
+        prop="type"
         label="类别">
+      </el-table-column>
+      <el-table-column
+        prop="size"
+        label="规格">
+      </el-table-column>
+      <el-table-column
+        prop="location"
+        label="位置">
       </el-table-column>
       <el-table-column
         prop=""
@@ -80,35 +92,10 @@ export default {
       goodsName: '继电器',
       goodsCount: '5',
       isXiaoHao: '消耗品',
-      goodsJpgUrl: '../src/assets/logo.png'
-    },
-    {
-      goodsId: '2',
-      goodsName: '继电器',
-      goodsCount: '5',
-      isXiaoHao: '消耗品',
-      goodsJpgUrl: '../src/assets/logo.png'
-    },
-    {
-      goodsId: '3',
-      goodsName: '继电器',
-      goodsCount: '5',
-      isXiaoHao: '消耗品',
-      goodsJpgUrl: '../src/assets/logo.png'
-    },
-    {
-      goodsId: '4',
-      goodsName: '继电器',
-      goodsCount: '5',
-      isXiaoHao: '消耗品',
-      goodsJpgUrl: '../src/assets/logo.png'
-    },
-    {
-      goodsId: '5',
-      goodsName: '继电器',
-      goodsCount: '5',
-      isXiaoHao: '消耗品',
-      goodsJpgUrl: '../src/assets/logo.png'
+      goodsJpgUrl: '../src/assets/logo.png',
+      size: '大号',
+      type: '类别',
+      location: 'A01'
     }]
   }
 }
