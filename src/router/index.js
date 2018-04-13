@@ -15,6 +15,8 @@ import GoodGiveBack from '@/components/Good/GiveBack'
 import GoodRecords from '@/components/Good/Records'
 import GoodNewItem from '@/components/Good/NewItem'
 import GoodMoneyRecord from '@/components/Good/MoneyRecord'
+import BuyGood from '@/components/Good/BuyGood'
+import NewMoney from '@/components/Good/NewMoney'
 
 import CompList from '@/components/Competition/CompList'
 import CompDetail from '@/components/Competition/CompDetail'
@@ -22,6 +24,8 @@ import NewComp from '@/components/Competition/NewComp'
 
 import NewTrain from '@/components/Train/NewTrain'
 import TrainList from '@/components/Train/TrainList'
+import TrainElect from '@/components/Train/Elect'
+import TrainSat from '@/components/Train/Satisfact'
 import TrainDetail from '@/components/Train/TrainDetail'
 import SignUpload from '@/components/Train/SignUpload'
 import SignList from '@/components/Train/SignList'
@@ -96,9 +100,19 @@ export default new Router({
       component: GoodNewItem // 添加新物资
     },
     {
+      path: '/Good/Buy',
+      name: 'BuyGood',
+      component: BuyGood // 添加新物资
+    },
+    {
       path: '/Good/MoneyRecord',
       name: 'GoodMoneyRecord',
       component: GoodMoneyRecord // 资金使用记录
+    },
+    {
+      path: '/Good/MoneyRecord/NewMoney',
+      name: 'NewMoney',
+      component: NewMoney // 资金使用记录
     },
     {
       path: '/Competition',
@@ -125,6 +139,16 @@ export default new Router({
       path: '/Train/List',
       name: 'TrainList',
       component: TrainList // 培训列表
+    },
+    {
+      path: '/Train/Elect',
+      name: 'TrainElect',
+      component: TrainElect // 评选
+    },
+    {
+      path: '/Train/Sat',
+      name: 'TrainSat',
+      component: TrainSat // 统计
     },
     {
       path: '/Train/Detail/:id',

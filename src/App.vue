@@ -61,4 +61,8 @@ export default {
 .el-breadcrumb {
   margin-bottom: 15px;
 }
+.half-form {
+  width: 50%;
+  margin-left: 25%;
+}
 </style>

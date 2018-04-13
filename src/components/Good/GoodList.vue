@@ -19,6 +19,16 @@
         width="180">
       </el-table-column>
       <el-table-column
+        prop="goodsCount"
+        label="位置"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="goodsCount"
+        label="尺寸"
+        width="180">
+      </el-table-column>
+      <el-table-column
         prop="isXiaoHao"
         label="类别">
       </el-table-column>
