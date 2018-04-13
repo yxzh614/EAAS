@@ -10,45 +10,35 @@
       style="width: 100%">
       <el-table-column
         prop="goodsName"
-        label="物品名称"
-        width="180">
+        label="物品名称">
       </el-table-column>
       <el-table-column
         prop="goodsCount"
-        label="物品数量"
-        width="180">
+        label="物品数量">
       </el-table-column>
       <el-table-column
-        prop="goodsCount"
-        label="位置"
-        width="180">
+        prop="goodsLocation"
+        label="位置">
       </el-table-column>
       <el-table-column
-        prop="goodsCount"
-        label="尺寸"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="isXiaoHao"
         label="可消耗">
+      <template slot-scope="scope">
+        <span>{{ scope.row.isXiaohao ? '可消耗' : '不可消耗' }}</span>
+      </template>
       </el-table-column>
       <el-table-column
-        prop="type"
+        prop="goodsType"
         label="类别">
       </el-table-column>
       <el-table-column
         prop="size"
-        label="规格">
-      </el-table-column>
-      <el-table-column
-        prop="location"
-        label="位置">
+        label="尺寸">
       </el-table-column>
       <el-table-column
         prop=""
         label="图片">
         <template slot-scope="scope">
-          <img :src="scope.row.goodsJpgUrl">
+          <img :src="scope.row.goodsJpgUrl | realPic">
         </template>
       </el-table-column>
       <el-table-column label="操作">
@@ -64,7 +54,7 @@
 </template>
 
 <script>
-// import axios from '../../services/my-axios'
+import axios from '../../services/my-axios'
 export default {
   data () {
     return {
@@ -72,10 +62,18 @@ export default {
         goodsId: null,
         goodsName: null,
         goodsCount: null,
-        isXiaoHao: null,
-        goodsJpgUrl: null
+        isXiaohao: null,
+        goodsJpgUrl: null,
+        goodsLocation: null,
+        goodsType: null,
+        size: null
       }],
       money: 2000
+    }
+  },
+  filters: {
+    realPic (e) {
+      return axios.fileBaseURL + e
     }
   },
   methods: {
@@ -87,16 +85,14 @@ export default {
     }
   },
   mounted () {
-    this.goodsList = [{
-      goodsId: '1',
-      goodsName: '继电器',
-      goodsCount: '5',
-      isXiaoHao: '消耗品',
-      goodsJpgUrl: '../src/assets/logo.png',
-      size: '大号',
-      type: '类别',
-      location: 'A01'
-    }]
+    axios.getGoods().then(_ => {
+      let data = _.data
+      console.log(data)
+      let goods = data.result
+      for (let good of goods) {
+        this.goodsList.push(good)
+      }
+    })
   }
 }
 </script>

@@ -1,5 +1,7 @@
 import axios from 'axios'
 export default {
+  baseURL: 'http://192.168.43.189:8080',
+  fileBaseURL: 'https://localhost:63342/st/',
   getYears () {
     return axios.get('/getths')
   },
@@ -14,9 +16,12 @@ export default {
   },
   newMoney (data) {
     return axios.post('/addbill', formToFormData(data))
+  },
+  getGoods () {
+    return axios.get('/getgoods')
   }
 }
-axios.defaults.baseURL = 'http://127.0.0.1:8080'
+axios.defaults.baseURL = 'http://192.168.43.189:8080'
 function formToFormData (form) {
   let formData = new FormData()
   for (let e in form) {
