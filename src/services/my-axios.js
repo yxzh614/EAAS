@@ -1,7 +1,7 @@
 import axios from 'axios'
 export default {
   baseURL: 'http://192.168.43.189:8080',
-  fileBaseURL: 'https://localhost:63342/st/',
+  fileBaseURL: 'http://localhost:63342/st/',
   getYears () {
     return axios.get('/getths')
   },
@@ -19,6 +19,9 @@ export default {
   },
   getGoods () {
     return axios.get('/getgoods')
+  },
+  moneyLeft () {
+    return axios.get('/getmoney')
   }
 }
 axios.defaults.baseURL = 'http://192.168.43.189:8080'
