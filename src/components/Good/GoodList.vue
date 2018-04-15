@@ -58,17 +58,8 @@ import axios from '../../services/my-axios'
 export default {
   data () {
     return {
-      goodsList: [{
-        goodsId: null,
-        goodsName: null,
-        goodsCount: null,
-        isXiaohao: null,
-        goodsJpgUrl: null,
-        goodsLocation: null,
-        goodsType: null,
-        size: null
-      }],
-      money: 2000
+      goodsList: [],
+      money: 0
     }
   },
   filters: {
@@ -81,17 +72,35 @@ export default {
       this.deleteGood(row.goodsId)
     },
     deleteGood (goodId) {
-      console.log(`删除物资:ID=${goodId}`)
+      axios.deleteGood({goodid: goodId}).then(_ => {
+        if (_.data.status === 'ok') {
+          this.goodsList.filter(_ => {
+            if (_.goodId === goodId) {
+              console.log('de')
+              return false
+            }
+            return true
+          })
+          this.$message({
+            message: '成功删除',
+            type: 'success'
+          })
+          this.$router.push({path: '/Good/List'})
+        }
+      })
     }
   },
   mounted () {
     axios.getGoods().then(_ => {
       let data = _.data
-      console.log(data)
       let goods = data.result
       for (let good of goods) {
         this.goodsList.push(good)
       }
+    })
+    axios.moneyLeft().then(_ => {
+      let data = _.data
+      this.money = data.result
     })
   }
 }

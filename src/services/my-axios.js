@@ -2,7 +2,7 @@ import axios from 'axios'
 export default {
   baseURL: 'http://192.168.43.189:8080',
   fileBaseURL: 'http://localhost:63342/st/',
-  getYears () {
+  getYears () { // 获取共有多少届
     return axios.get('/getths')
   },
   getAllComp () {
@@ -20,8 +20,44 @@ export default {
   getGoods () {
     return axios.get('/getgoods')
   },
+  getGoodName () {
+    return axios.get('/getgoodname')
+  },
   moneyLeft () {
     return axios.get('/getmoney')
+  },
+  newGood (data) {
+    return axios.post('/addgood', formToFormData(data))
+    // name isXiaoHao type location size
+  },
+  buyGood (data) {
+    return axios.post('/buygood', formToFormData(data))
+  },
+  deleteGood (data) {
+    return axios.post('/deletegood', formToFormData(data))
+  },
+  borrowGood (data) {
+    return axios.post('/borrow', formToFormData(data))
+  },
+  goodRecords () {
+    return axios.get('/goodrecords')
+  },
+  getCompMessage (params) {
+    return axios.get(`/getcommessage?comId=${params}`)
+  },
+  addTrain (data) {
+    return axios.post('addtrain', formToFormData(data))
+  },
+  goodNeedReturn (data) {
+  },
+  getTrainList () {
+    return axios.get('gettrainslist')
+  },
+  getTrain (params) {
+    return axios.get(`/gettrain?trainId=${params}`)
+  },
+  getSignList (params) {
+    return axios.get(`/qiandaolist?trainId=${params}`)
   }
 }
 axios.defaults.baseURL = 'http://192.168.43.189:8080'

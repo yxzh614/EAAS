@@ -7,33 +7,48 @@
     <el-upload
       class="upload-demo"
       drag
-      action="https://jsonplaceholder.typicode.com/posts/"
-      multiple>
+      ref="upload"
+      :action="uploadURL"
+      multiple
+      :on-success="handleSuccess"
+      accept="dat">
       <i class="el-icon-upload"></i>
       <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-      <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+      <div class="el-upload__tip" slot="tip">只能上传.dat文件</div>
       </el-upload>
   </div>
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        fileList: []
-      }
+import axios from '../../services/my-axios'
+export default {
+  data () {
+    return {
+      fileList: []
+    }
+  },
+  computed: {
+    uploadURL () {
+      return axios.baseURL + '/qiandaoauto'
+    }
+  },
+  methods: {
+    handleSuccess () {
+      this.$message({
+        message: '上传成功',
+        type: 'success'
+      })
     },
-    methods: {
-      handleRemove (file, fileList) {
-        console.log(file, fileList)
-      },
-      handlePreview (file) {
-        console.log(file)
-      },
-      handleExceed (files, fileList) {
-      },
-      beforeRemove (file, fileList) {
-      }
+    handleRemove (file, fileList) {
+      console.log(file, fileList)
+    },
+    handlePreview (file) {
+      console.log(file)
+    },
+    handleExceed (files, fileList) {
+    },
+    beforeRemove (file, fileList) {
     }
   }
+}
 </script>

@@ -1,5 +1,7 @@
 <template>
-  
+  <div>
+      评选页面
+  </div>
 </template>
 
 <script>
