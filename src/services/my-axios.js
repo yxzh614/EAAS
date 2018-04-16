@@ -58,6 +58,9 @@ export default {
   },
   getSignList (params) {
     return axios.get(`/qiandaolist?trainId=${params}`)
+  },
+  getCiYun (params) {
+    return axios.get(`/getciyun?trainId=${params}`)
   }
 }
 axios.defaults.baseURL = 'http://192.168.43.189:8080'
