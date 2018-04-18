@@ -65,4 +65,8 @@ export default {
   width: 50%;
   margin-left: 25%;
 }
+.el-aside {
+  background-color: #77818b;
+  min-height: 800px;
+}
 </style>

@@ -4,8 +4,7 @@
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>活动统计</el-breadcrumb-item>
     </el-breadcrumb>
-    <el-button @click="handleClick"></el-button>
-    <el-select :change="handleChange" v-model="train" placeholder="请选择培训">
+    <el-select @change="handleChange" v-model="train" placeholder="请选择培训">
       <el-option
         v-for="train in trainList"
         :key="train.trainId"
@@ -13,7 +12,7 @@
         :value="train.trainId">
       </el-option>
     </el-select>
-    <el-carousel v-if="selected" height="550px" indicator-position="outside">
+    <el-carousel :autoplay="false" v-show="selected" height="550px" indicator-position="outside">
       <el-carousel-item>
         <h3>学生评价统计</h3>
         <iframe src="h.html" width="500px" height="300px" frameborder="0"></iframe>
@@ -29,9 +28,7 @@
         </div>
       </el-carousel-item>
     </el-carousel>
-    <!-- <h3 v-if="ciy">学生评价统计</h3>
-    <iframe v-if="ciy" src="h.html" width="100%" height="300px" frameborder="0"></iframe>
-    <div id="attendChart"></div> -->
+    <div v-show="!selected" id="lineChart"></div>
   </div>
 </template>
 
@@ -49,12 +46,13 @@ export default {
         {}
       ],
       attendChart: null,
-      heatChart: null
+      heatChart: null,
+      lineChart: null
     }
   },
   methods: {
     handleChange (e) {
-      this.handleChange = true
+      this.selected = true
       this.setAttendChart()
       this.setHeatChart()
       axios.getCiYun(e).then(_ => {
@@ -62,13 +60,6 @@ export default {
           this.signList = _.data.result
         }
       })
-    },
-    handleClick () {
-      this.selected = !this.selected
-      this.attendChart = echarts.init(document.getElementById('attendChart'))
-      this.heatChart = echarts.init(document.getElementById('heatChart'))
-      this.setAttendChart()
-      this.setHeatChart()
     },
     setAttendChart () {
       let attendChartOption = {
@@ -190,16 +181,41 @@ export default {
         }]
       }
       this.heatChart.setOption(heatChartOption)
+    },
+    setLineChart () {
+      let option = {
+        title: {
+          text: '培训到场汇总',
+          x: 'center'
+        },
+        xAxis: {
+          type: 'category',
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [{
+          data: [820, 932, 901, 934, 1290, 1330, 1320],
+          type: 'line'
+        }]
+      }
+      this.lineChart.setOption(option)
     }
   },
   mounted () {
+    this.attendChart = echarts.init(document.getElementById('attendChart'))
+    this.heatChart = echarts.init(document.getElementById('heatChart'))
+    this.lineChart = echarts.init(document.getElementById('lineChart'))
     this.setAttendChart()
     this.setHeatChart()
+    this.setLineChart()
     axios.getTrainList().then(_ => {
       if (_.data.status === 'ok') {
         this.trainList = _.data.result
       }
     })
+    window.onload = () => { this.selected = false }
   }
 }
 </script>
@@ -216,7 +232,12 @@ h3 {
 #heatChart {
   width: 700px;
   height: 550px;
-  margin-left: 200px;
+  margin-left: 15%;
+}
+#lineChart {
+  width: 700px;
+  height: 550px;
+  margin-left: 100px;
 }
 #chartWarp {
   width: 500px;

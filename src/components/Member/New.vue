@@ -5,7 +5,9 @@
       <el-breadcrumb-item>社团招新</el-breadcrumb-item>
     </el-breadcrumb>
     <el-upload
-      class="upload-demo"
+      style="
+        margin-left: 35%;
+        margin-top: 200px;"
       action="https://jsonplaceholder.typicode.com/posts/"
       :on-preview="handlePreview"
       :on-remove="handleRemove"
@@ -56,5 +58,9 @@ export default {
   position: fixed;
   bottom: 20px;
   right: 20px;
+}
+.el-upload {
+  margin-left: 200px;
+  margin-top: 200px;
 }
 </style>

@@ -61,6 +61,24 @@ export default {
   },
   getCiYun (params) {
     return axios.get(`/getciyun?trainId=${params}`)
+  },
+  getMemberByYear (params) {
+    return axios.get(`/getthmember?th=${params}`)
+  },
+  getMemberOwe (params) {
+    return axios.get(`/memberowe?memberId=${params}`)
+  },
+  goodGiveBack (data) {
+    return axios.post('/giveback', formToFormData(data))
+  },
+  getBills () {
+    return axios.get('getbills')
+  },
+  getGrade (params) {
+    return axios.get(`/pingfen?th=${params}`)
+  },
+  downloadMember (params) {
+    return axios.get(`/getthexcel?th=${params}`)
   }
 }
 axios.defaults.baseURL = 'http://192.168.43.189:8080'

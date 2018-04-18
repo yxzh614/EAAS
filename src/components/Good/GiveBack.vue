@@ -4,26 +4,14 @@
     <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item> 
     <el-breadcrumb-item>归还物资</el-breadcrumb-item>
   </el-breadcrumb>
-  <span>输入学号:</span>
-  <el-input></el-input>
-  <el-table
-    :data="goodOwe"
-    style="width: 100%">
-    <el-table-column
-      prop="name"
-      label="姓名"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="num"
-      label="地址">
-    </el-table-column>
-  </el-table>
   <el-form :label-position="'top'" :inline="false" :model="form" class="">
+    <el-form-item label="学号">
+      <el-input v-model="form.memberId" @change="handleChange"></el-input>
+    </el-form-item>
     <el-form-item label="商品名称">
       <el-select v-model="form.goodId" filterable placeholder="请选择">
         <el-option
-          v-for="item in GoodNames"
+          v-for="item in goodOwe"
           :key="item.goodId"
           :label="item.goodName"
           :value="item.goodId">
@@ -32,9 +20,6 @@
     </el-form-item>
     <el-form-item label="数量">
       <el-input-number v-model="form.num" :min="1" :max="99"></el-input-number>
-    </el-form-item>
-    <el-form-item label="学号">
-      <el-input v-model="form.memberId" label="学号"></el-input>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="onSubmit">确定</el-button>
@@ -55,9 +40,8 @@ export default {
       },
       goodOwe: [
         {
-          id: 1,
-          name: 'ji',
-          stuid: '',
+          goodId: 1,
+          goodName: '无',
           num: 0
         }
       ],
@@ -73,11 +57,18 @@ export default {
     })
   },
   methods: {
+    handleChange (value) {
+      axios.getMemberOwe(value).then(_ => {
+        if (_.data.status === 'ok') {
+          this.goodOwe = _.data.result
+        }
+      })
+    },
     onSubmit () {
-      axios.borrowGood(this.form).then(_ => {
+      axios.goodGiveBack(this.form).then(_ => {
         if (_.data.status === 'ok') {
           this.$message({
-            message: '借入成功',
+            message: '归还成功',
             type: 'success'
           })
         } else {

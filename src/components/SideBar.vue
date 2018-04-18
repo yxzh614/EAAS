@@ -1,16 +1,16 @@
 <template>
   <el-menu
-    :default-active="activeIndex2"
+    :default-openeds="defaultOpenedMenu"
+    :unique-opened="true"
     class="el-menu-demo"
-    @select="handleSelect"
     :router="route"
-    @open="handleOpen"
-    @close="handleClose">
-    <el-submenu index="/Stuff">
+    background-color="#77818b"
+    text-color="#fff">
+    <el-submenu index="1">
       <template slot="title">人员管理</template>
       <el-submenu index="1-4">
         <template slot="title">人员列表</template>
-        <el-menu-item v-for="year in routeByYear" :key = "year.year" :index="year.r">{{year.year}}</el-menu-item>
+        <el-menu-item v-for="year in routeByYear" :key="year.year" :index="year.r">{{year.year}}</el-menu-item>
       </el-submenu>
       <el-menu-item index="/Member/New">社团招新</el-menu-item>
       <el-menu-item index="/Member/Elect">换届选举</el-menu-item>
@@ -51,33 +51,12 @@ export default {
       routeByYear: [],
       routeByMenu: true,
       activeIndex: '1',
-      activeIndex22: '/Index',
-      msg: 'navbar'
+      defaultOpenedMenu: ['1']
     }
   },
   computed: {
-    activeIndex2: function () {
-      return this.activeIndex22
-    },
     route: function () {
       return this.routeByMenu
-    }
-  },
-  methods: {
-    handleSelect (index, indexPath) {
-    },
-    handleOpen (key, keyPath) {
-    },
-    handleClose (key, keyPath) {
-      console.log(key, keyPath)
-    },
-    goStuff () {
-    },
-    showStuffList () {
-      this.msg = 'none'
-    },
-    goHome () {
-      this.$router.push({ path: `/` })
     }
   },
   mounted () {

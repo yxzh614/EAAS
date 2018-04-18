@@ -46,6 +46,7 @@
   </div>
 </template>
 <script>
+import axios from '../../services/my-axios'
 export default {
   data () {
     return {
@@ -76,6 +77,13 @@ export default {
         }
       ]
     }
+  },
+  mounted () {
+    axios.getMemberByYear(this.deptId).then(_ => {
+      if (_.data.status === 'ok') {
+        this.tableData = _.data.result
+      }
+    })
   },
   props: ['deptId']
 }

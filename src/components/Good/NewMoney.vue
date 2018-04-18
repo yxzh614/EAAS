@@ -3,7 +3,14 @@
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item> 
       <el-breadcrumb-item>添加资金记录</el-breadcrumb-item>
-    </el-breadcrumb>
+    </el-breadcrumb>  
+    <el-alert
+      center
+      title="注意"
+      type="info"
+      description="购买物资时自动生成资金记录,请勿重复添加"
+      show-icon>
+    </el-alert>
     <el-form class="half-form" label-width="70px">
       <el-form-item label="原因">
         <el-input type="text" v-model="form.reason"></el-input>
@@ -22,14 +29,14 @@
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-button @click="onSubmit">确定</el-button>
+        <el-button type="primary" @click="onSubmit">确定</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-import myAxs from '../../services/my-axios'
+import axios from '../../services/my-axios'
 export default {
   data () {
     return {
@@ -55,7 +62,7 @@ export default {
       console.log(this.num)
     },
     onSubmit () {
-      myAxs.newMoney(this.form).then(_ => {
+      axios.newMoney(this.form).then(_ => {
         let data = _.data
         console.log(data)
         this.$message({
@@ -70,19 +77,22 @@ export default {
 </script>
 
 <style scoped>
-.el-input-number {
-  width: 50%;
-  margin-left: 25%;
-}
 .el-select {
-  width: 50%;
-  margin-left: 25%;
+  width: 100%;
+}
+.el-input-number {
+  width: 100%;
 }
 .el-form {
-  margin-top: 130px;
-}
-.el-button {
   width: 30%;
   margin-left: 35%;
+}
+.el-button {
+  width: 100%;
+  margin-left: 0;
+  margin-right: auto;
+}
+.el-alert {
+  margin-top: 50px;
 }
 </style>

@@ -5,7 +5,9 @@
       <el-breadcrumb-item>换届选举</el-breadcrumb-item>
     </el-breadcrumb>
     <el-upload
-      class="upload-demo"
+      style="
+        margin-left: 35%;
+        margin-top: 200px;"
       action="https://jsonplaceholder.typicode.com/posts/"
       :on-preview="handlePreview"
       :on-remove="handleRemove"
