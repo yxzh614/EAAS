@@ -1,7 +1,7 @@
 import axios from 'axios'
 export default {
   baseURL: 'http://192.168.43.189:8080',
-  fileBaseURL: 'http://localhost:63342/st/',
+  fileBaseURL: 'http://localhost:63342/',
   updateMember: '/updatemembers',
   updateNew: '/updatenew',
   getYears () { // 获取共有多少届

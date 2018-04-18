@@ -21,8 +21,7 @@
       <div class="el-upload__tip" slot="tip">只能上传xls文件</div>
     </el-upload>
     <el-tooltip class="item" effect="dark" content="xxx.xls" placement="bottom-start">
-      <el-button type="primary">下载模板</el-button>
-    </el-tooltip>
+    <a class="el-button" target="_blank" :href="fileURL + '/templete1'">下载模板</a></el-tooltip>
   </div>
 </template>
 
@@ -38,6 +37,9 @@ export default {
   computed: {
     uploadURL () {
       return axios.updateMember
+    },
+    fileURL () {
+      return axios.fileBaseURL
     }
   },
   methods: {

@@ -4,7 +4,7 @@
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>发布竞赛</el-breadcrumb-item>
     </el-breadcrumb>
-    <el-form ref="form" :model="form" label-width="100px">
+    <el-form ref="form" :model="form" label-width="150px">
       <el-form-item label="比赛名称">
         <el-input v-model="form.comName"></el-input>
       </el-form-item>
@@ -24,6 +24,13 @@
           v-model="form.comTime"
           type="datetime"
           placeholder="选择日期">
+        </el-date-picker>
+      </el-form-item>
+      <el-form-item label="网上报名开始日期">
+        <el-date-picker
+          v-model="form.startbaoming"
+          type="date"
+          placeholder="留空则不开启网上报名">
         </el-date-picker>
       </el-form-item>
       <el-form-item label="报名截止日期">
@@ -66,7 +73,8 @@ export default {
         comTime: '',
         explain: '',
         jiezhibaoming: '',
-        generalize: ''
+        generalize: '',
+        startbaoming: ''
       },
       fileList: []
     }
