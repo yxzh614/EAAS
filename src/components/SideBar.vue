@@ -1,16 +1,16 @@
 <template>
   <el-menu
-    :default-active="activeIndex2"
+    :default-openeds="defaultOpenedMenu"
+    :unique-opened="true"
     class="el-menu-demo"
-    @select="handleSelect"
     :router="route"
-    @open="handleOpen"
-    @close="handleClose">
-    <el-submenu index="/Stuff">
+    background-color="#77818b"
+    text-color="#fff">
+    <el-submenu index="1">
       <template slot="title">人员管理</template>
       <el-submenu index="1-4">
         <template slot="title">人员列表</template>
-        <el-menu-item v-for="year in routeByYear" :key = "year.year" :index="year.r">{{year.year}}</el-menu-item>
+        <el-menu-item v-for="year in routeByYear" :key="year.year" :index="year.r">{{year.year}}</el-menu-item>
       </el-submenu>
       <el-menu-item index="/Member/New">社团招新</el-menu-item>
       <el-menu-item index="/Member/Elect">换届选举</el-menu-item>
@@ -22,7 +22,7 @@
       <el-menu-item index="/Good/Buy">购买物资</el-menu-item>
       <el-menu-item index="/Good/Borrow">借取物资</el-menu-item>
       <el-menu-item index="/Good/GiveBack">归还物资</el-menu-item>
-      <el-menu-item index="/Good/Records">物资借取记录</el-menu-item>
+      <el-menu-item index="/Good/Records">物资记录</el-menu-item>
       <el-menu-item index="/Good/MoneyRecord">资金记录</el-menu-item>
     </el-submenu>
     <el-submenu index="4">
@@ -39,14 +39,10 @@
       <el-menu-item index="/Train/Elect">年度评选</el-menu-item>
       <el-menu-item index="/Train/Sat">活动统计</el-menu-item>
     </el-submenu>
-    <el-submenu index="6">
-      <template slot="title">通知管理</template>
-      <el-menu-item index="/TongZhi/List">通知列表</el-menu-item>
-    </el-submenu>
   </el-menu>
 </template>
 <script>
-import myAxs from '../services/my-axios'
+import axios from '../services/my-axios'
 export default {
   name: 'navbar',
   data () {
@@ -55,37 +51,16 @@ export default {
       routeByYear: [],
       routeByMenu: true,
       activeIndex: '1',
-      activeIndex22: '/Index',
-      msg: 'navbar'
+      defaultOpenedMenu: ['1']
     }
   },
   computed: {
-    activeIndex2: function () {
-      return this.activeIndex22
-    },
     route: function () {
       return this.routeByMenu
     }
   },
-  methods: {
-    handleSelect (index, indexPath) {
-    },
-    handleOpen (key, keyPath) {
-    },
-    handleClose (key, keyPath) {
-      console.log(key, keyPath)
-    },
-    goStuff () {
-    },
-    showStuffList () {
-      this.msg = 'none'
-    },
-    goHome () {
-      this.$router.push({ path: `/` })
-    }
-  },
   mounted () {
-    myAxs.getYears().then(_ => {
+    axios.getYears().then(_ => {
       let data = _.data
       console.log(data)
       let years = data.result

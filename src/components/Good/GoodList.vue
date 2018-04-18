@@ -38,7 +38,7 @@
         prop=""
         label="图片">
         <template slot-scope="scope">
-          <img :src="scope.row.goodsJpgUrl | realPic">
+          <img :src="scope.row.goodsId | realPic">
         </template>
       </el-table-column>
       <el-table-column label="操作">
@@ -58,21 +58,19 @@ import axios from '../../services/my-axios'
 export default {
   data () {
     return {
-      goodsList: [{
-        goodsId: null,
-        goodsName: null,
-        goodsCount: null,
-        isXiaohao: null,
-        goodsJpgUrl: null,
-        goodsLocation: null,
-        goodsType: null,
-        size: null
-      }],
-      money: 2000
+      goodsList: [],
+      money: 0
     }
   },
   filters: {
     realPic (e) {
+      console.log(e)
+      switch (e) {
+        case 1: return 'static/jdq.jpg'
+        case 8: return 'static/dc.jpg'
+        case 9: return 'static/dx.jpg'
+        case 10: return 'static/dpj.jpg'
+      }
       return axios.fileBaseURL + e
     }
   },
@@ -81,17 +79,35 @@ export default {
       this.deleteGood(row.goodsId)
     },
     deleteGood (goodId) {
-      console.log(`删除物资:ID=${goodId}`)
+      axios.deleteGood({goodid: goodId}).then(_ => {
+        if (_.data.status === 'ok') {
+          this.goodsList.filter(_ => {
+            if (_.goodId === goodId) {
+              console.log('de')
+              return false
+            }
+            return true
+          })
+          this.$message({
+            message: '成功删除',
+            type: 'success'
+          })
+          this.$router.push({path: '/Good/List'})
+        }
+      })
     }
   },
   mounted () {
     axios.getGoods().then(_ => {
       let data = _.data
-      console.log(data)
       let goods = data.result
       for (let good of goods) {
         this.goodsList.push(good)
       }
+    })
+    axios.moneyLeft().then(_ => {
+      let data = _.data
+      this.money = data.result
     })
   }
 }

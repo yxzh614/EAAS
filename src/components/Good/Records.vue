@@ -2,7 +2,7 @@
   <div>
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item> 
-      <el-breadcrumb-item>物资借取记录</el-breadcrumb-item>
+      <el-breadcrumb-item>物资记录</el-breadcrumb-item>
     </el-breadcrumb>
     <el-table
       :data="tableData"

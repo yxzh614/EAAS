@@ -6,18 +6,18 @@
     </el-breadcrumb>
     <el-form :inline="false" :model="form" class="demo-form-inline">
       <el-form-item label="商品名称">
-        <el-input v-model="form.user" placeholder="输入商品名称"></el-input>
+        <el-input v-model="form.name" placeholder="输入商品名称"></el-input>
       </el-form-item>
       <el-form-item label="种类">
-        <el-input v-model="form.user" placeholder="输入商品名称"></el-input>
+        <el-input v-model="form.type" placeholder="输入种类"></el-input>
       </el-form-item>
       <el-form-item label="位置">
-        <el-input v-model="form.user" placeholder="输入商品名称"></el-input>
+        <el-input v-model="form.location" placeholder="位置"></el-input>
       </el-form-item>
-      <el-form-item label="尺寸">  
-        <el-select v-model="value" placeholder="请选择">
+      <el-form-item label="尺寸">
+        <el-select v-model="form.size" placeholder="请选择">
           <el-option
-            v-for="item in [{value: 'da', label: 'da'},{value: 'da', label: 'da'},{value: 'da', label: 'da'}]"
+            v-for="item in [{value: '大', label: '大'},{value: '中', label: '中'},{value: '小', label: '小'}]"
             :key="item.value"
             :label="item.label"
             :value="item.value">
@@ -26,59 +26,55 @@
       </el-form-item>
       <el-form-item label="">
         <el-switch
-          v-model="value2"
+          v-model="valuexh"
           active-text="可消耗"
           inactive-text="不可消耗">
         </el-switch>
       </el-form-item>
-      <el-form-item>
+      <el-form-item label="">
         <el-upload
           class="upload-demo"
-          action="https://jsonplaceholder.typicode.com/posts/"
+          ref="upload"
+          :action="uploadURL"
+          :limit="1"
           :on-preview="handlePreview"
           :on-remove="handleRemove"
-          :file-list="picList"
-          list-type="picture"
+          :file-list="fileList"
           :auto-upload="false">
-          <el-button size="small" type="primary">点击上传图片</el-button>
-          <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+          <el-button slot="trigger" size="small" type="primary">选取图片</el-button>
+          <div slot="tip" class="el-upload__tip">上传1个图片</div>
         </el-upload>
       </el-form-item>
       <el-form-item>
-        <el-button class="submit" type="primary">确定</el-button>
+        <el-button class="submit" @click="onSubmit" type="primary">确定</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
+import axios from '../../services/my-axios'
 export default {
   data () {
     return {
       form: {
-
+        name: null,
+        isXiaoHao: null,
+        type: null,
+        location: null,
+        size: null
       },
-      value2: 'false',
+      fileList: [],
+      valuexh: false,
       picList: [],
-      options: [{
-        value: '选项1',
-        label: '继电器1'
-      }, {
-        value: '选项2',
-        label: '继电器2'
-      }, {
-        value: '选项3',
-        label: '继电器3'
-      }, {
-        value: '选项4',
-        label: '继电器4'
-      }, {
-        value: '选项5',
-        label: '继电器5'
-      }],
       value8: '',
       num1: 0,
       money: 0
+    }
+  },
+  computed: {
+    uploadURL () {
+      return axios.baseURL + '/addgoodpic'
     }
   },
   methods: {
@@ -87,6 +83,21 @@ export default {
     },
     handlePreview (file) {
       console.log(file)
+    },
+    onSubmit () {
+      this.valuexh ? this.form.isXiaoHao = 1 : this.form.isXiaoHao = 0
+      axios.newGood(this.form).then(_ => {
+        let data = _.data
+        console.log(data)
+        this.$refs.upload.submit()
+        this.$message({
+          message: '成功添加了物资！',
+          type: 'success'
+        })
+        this.$router.push({name: 'GoodList'})
+      }).catch(_ => {
+        console.log(_)
+      })
     }
   }
 }

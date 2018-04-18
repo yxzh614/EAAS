@@ -7,7 +7,7 @@
     </el-breadcrumb>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>{{trainDetail.name}}</span>
+        <span>{{trainDetail.trainName}}</span>
         <el-dropdown @command="handleCommand" style="float: right; padding: 3px 0;">
           <span class="el-dropdown-link">
             操作<i class="el-icon-arrow-down el-icon--right"></i>
@@ -18,28 +18,33 @@
         </el-dropdown>
       </div>
       <div class="text item">
-        简介：{{trainDetail.info}}
+        时间:{{trainDetail.trainTime}}
       </div>
       <div class="text item">
-        详细信息：{{trainDetail.detail}}
+        地点:{{trainDetail.trainRoom}}
       </div>
       <div class="text item">
-        时间：{{trainDetail.date}}
+        详细信息:{{trainDetail.trainExplain}}
+      </div>
+      <div class="text item">
+        发布时间:{{trainDetail.fabuTime}}
       </div>
     </el-card>
   </div>
 </template>
 
 <script>
+import axios from '../../services/my-axios'
 export default {
   data () {
     return {
       trainDetail: {
-        id: '',
-        name: '',
-        info: '',
-        detail: '',
-        date: ''
+        trainId: '',
+        trainName: '',
+        trainTime: '',
+        trainRoom: '',
+        fabuTime: '',
+        trainExplain: ''
       }
     }
   },
@@ -49,13 +54,9 @@ export default {
     }
   },
   mounted () {
-    this.trainDetail = {
-      id: this.$route.params.id,
-      name: this.$route.params.id,
-      info: this.$route.params.id,
-      detail: this.$route.params.id,
-      date: this.$route.params.id
-    }
+    axios.getTrain(this.$route.params.id).then(_ => {
+      this.trainDetail = _.data.result
+    })
   }
 }
 </script>

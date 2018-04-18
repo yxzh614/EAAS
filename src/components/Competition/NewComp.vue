@@ -9,12 +9,20 @@
         <el-input v-model="form.comName"></el-input>
       </el-form-item>
       <el-form-item label="比赛简介">
-        <el-input v-model="form.explain"></el-input>
+        <el-input v-model="form.generalize"></el-input>
       </el-form-item>
-      <el-form-item label="比赛日期">
+      <el-form-item label="比赛介绍">
+        <el-input
+          type="textarea"
+          :rows="5"
+          placeholder="请输入内容"
+          v-model="form.explain">
+        </el-input>
+      </el-form-item>
+      <el-form-item label="比赛时间">
         <el-date-picker
           v-model="form.comTime"
-          type="date"
+          type="datetime"
           placeholder="选择日期">
         </el-date-picker>
       </el-form-item>
@@ -32,7 +40,7 @@
         <el-upload
           class="upload-demo"
           ref="upload"
-          action="http://localhost:8080/addfujian/"
+          :action="uploadURL"
           :limit="2"
           :on-preview="handlePreview"
           :on-remove="handleRemove"
@@ -48,23 +56,29 @@
 </template>
 
 <script>
-import myAxs from '../../services/my-axios'
+import axios from '../../services/my-axios'
 export default {
   data () {
     return {
       form: {
         memberLimit: 0,
-        comName: '123123',
-        comTime: '123123',
-        explain: '123123',
-        jiezhibaoming: '123123'
+        comName: '',
+        comTime: '',
+        explain: '',
+        jiezhibaoming: '',
+        generalize: ''
       },
       fileList: []
     }
   },
+  computed: {
+    uploadURL () {
+      return axios.baseURL + '/addfujian'
+    }
+  },
   methods: {
     onSubmit () {
-      myAxs.newComp(this.form).then(_ => {
+      axios.newComp(this.form).then(_ => {
         let data = _.data
         console.log(data)
         this.$refs.upload.submit()
