@@ -8,7 +8,7 @@
       style="
         margin-left: 35%;
         margin-top: 200px;"
-      action="https://jsonplaceholder.typicode.com/posts/"
+      :action="uploadURL"
       :on-preview="handlePreview"
       :on-remove="handleRemove"
       :before-remove="beforeRemove"
@@ -27,11 +27,17 @@
 </template>
 
 <script>
+import axios from '../../services/my-axios'
 export default {
   data () {
     return {
       fileList: [
       ]
+    }
+  },
+  computed: {
+    uploadURL () {
+      return axios.uploadNew
     }
   },
   methods: {
