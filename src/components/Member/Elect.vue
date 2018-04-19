@@ -8,7 +8,7 @@
       style="
         margin-left: 35%;
         margin-top: 200px;"
-      action="https://jsonplaceholder.typicode.com/posts/"
+      :action="uploadURL"
       :on-preview="handlePreview"
       :on-remove="handleRemove"
       :before-remove="beforeRemove"
@@ -18,20 +18,28 @@
       :file-list="fileList">
       <i class="el-icon-upload"></i>
       <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-      <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+      <div class="el-upload__tip" slot="tip">只能上传xls文件</div>
     </el-upload>
     <el-tooltip class="item" effect="dark" content="xxx.xls" placement="bottom-start">
-      <el-button type="primary">下载模板</el-button>
-    </el-tooltip>
+    <a class="el-button" target="_blank" :href="fileURL + '/templete1'">下载模板</a></el-tooltip>
   </div>
 </template>
 
 <script>
+import axios from '../../services/my-axios'
 export default {
   data () {
     return {
       fileList: [
       ]
+    }
+  },
+  computed: {
+    uploadURL () {
+      return axios.updateMember
+    },
+    fileURL () {
+      return axios.fileBaseURL
     }
   },
   methods: {

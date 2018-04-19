@@ -5,7 +5,7 @@
       <el-breadcrumb-item>物资记录</el-breadcrumb-item>
     </el-breadcrumb>
     <el-table
-      :data="tableData"
+      :data="recordList"
       style="width: 100%">
       <el-table-column
         prop="goodName"
@@ -37,22 +37,15 @@
         label="行为"
         width="180">
       </el-table-column>
-      <el-table-column label="操作">
-        <template slot-scope="scope">
-          <el-button
-            size="mini"
-            type="danger"
-            @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-        </template>
-      </el-table-column>
     </el-table>
   </div>
 </template>
 <script>
+import axios from '../../services/my-axios'
 export default {
   data () {
     return {
-      tableData: [{
+      recordList: [{
         goodRecordId: '1',
         goodId: '1',
         goodName: '继电器',
@@ -84,13 +77,10 @@ export default {
       }]
     }
   },
-  methods: {
-    handleDelete (index, row) {
-      this.deleteRecord(row.recordId)
-    },
-    deleteRecord (recordId) {
-      console.log(`删除ID=${recordId}`)
-    }
+  mounted () {
+    axios.goodRecords().then(_ => {
+      this.recordList = _.data.result
+    })
   }
 }
 </script>

@@ -2,9 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/components/Index'
 
-import StuffList from '@/components/Stuff/StuffList'
-import StuffDetail from '@/components/Stuff/StuffDetail'
-
 import MemberNew from '@/components/Member/New'
 import MemberElect from '@/components/Member/Elect'
 import MemberOfYear from '@/components/Member/MemberOfYear'
@@ -47,17 +44,6 @@ export default new Router({
       path: '/Index',
       name: 'Index',
       component: Index // 首页
-    },
-    {
-      path: '/Stuff',
-      name: 'StuffList',
-      component: StuffList // 部门 不用
-    },
-    {
-      path: '/Stuff/Detail/:id',
-      name: 'StuffDetail',
-      component: StuffDetail, // 部门详情 不用
-      props: true
     },
     {
       path: '/Member/year/:year',
