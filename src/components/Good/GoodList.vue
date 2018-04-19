@@ -38,7 +38,7 @@
         prop=""
         label="图片">
         <template slot-scope="scope">
-          <img :src="scope.row.goodsId | realPic">
+          <img :src="scope.row.goodsJpgUrl | realPic">
         </template>
       </el-table-column>
       <el-table-column label="操作">
@@ -65,12 +65,12 @@ export default {
   filters: {
     realPic (e) {
       console.log(e)
-      switch (e) {
-        case 1: return 'static/jdq.jpg'
-        case 8: return 'static/dc.jpg'
-        case 9: return 'static/dx.jpg'
-        case 10: return 'static/dpj.jpg'
-      }
+      // switch (e) {
+      //   case 1: return 'static/jdq.jpg'
+      //   case 8: return 'static/dc.jpg'
+      //   case 9: return 'static/dx.jpg'
+      //   case 10: return 'static/dpj.jpg'
+      // }
       return axios.fileBaseURL + e
     }
   },
@@ -104,10 +104,10 @@ export default {
       for (let good of goods) {
         this.goodsList.push(good)
       }
-    })
-    axios.moneyLeft().then(_ => {
-      let data = _.data
-      this.money = data.result
+      axios.moneyLeft().then(_ => {
+        let data = _.data
+        this.money = data.result
+      })
     })
   }
 }

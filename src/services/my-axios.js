@@ -1,7 +1,7 @@
 import axios from 'axios'
 export default {
-  baseURL: 'http://192.168.43.189:8080',
-  fileBaseURL: 'http://localhost:63342/st/',
+  baseURL: 'http://localhost:8080',
+  fileBaseURL: 'http://localhost:63342/',
   getYears () { // 获取共有多少届
     return axios.get('/getths')
   },
@@ -24,7 +24,7 @@ export default {
     return axios.get('/getgoodname')
   },
   moneyLeft () {
-    return axios.get('/getmoney')
+    return axios.get('/getmoneywudi')
   },
   newGood (data) {
     return axios.post('/addgood', formToFormData(data))
@@ -81,7 +81,7 @@ export default {
     return axios.get(`/getthexcel?th=${params}`)
   }
 }
-axios.defaults.baseURL = 'http://192.168.43.189:8080'
+axios.defaults.baseURL = 'http://localhost:8080'
 function formToFormData (form) {
   let formData = new FormData()
   for (let e in form) {
