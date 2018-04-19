@@ -81,6 +81,15 @@ export default {
   },
   downloadMember (params) {
     return axios.get(`/getthexcel?th=${params}`)
+  },
+  getTrainYear () {
+    return axios.get(`/gettrainyear`)
+  },
+  getTrainByYear (params) {
+    return axios.get(`/gettrainsbyyear?year=${params}`)
+  },
+  getTrainExcel (params) {
+    return axios.get(`/gettrainexcel?year=${params}`)
   }
 }
 axios.defaults.baseURL = 'http://192.168.43.189:8080'

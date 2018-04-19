@@ -85,14 +85,14 @@ export default {
             center: ['50%', '60%'],
             data: [
               {
-                value: 335,
+                value: (Math.random() * 1000).toFixed(),
                 name: '出席',
                 itemStyle: {
                   color: '#00e5ff'
                 }
               },
               {
-                value: 310,
+                value: (Math.random() * 1000).toFixed(),
                 name: '未出席',
                 itemStyle: {
                   color: '#f50057'
@@ -121,7 +121,15 @@ export default {
       var data = []
       for (let i = 0; i < 20; i++) {
         for (let j = 0; j < 20; j++) {
-          data.push([i, j, (Math.random() * 100).toFixed()])
+          if (i > 17) {
+            data.push([i, j, (Math.random() * 100).toFixed()])
+          } else {
+            if (j > 3 && j < 17) {
+              data.push([i, j, (Math.random() * 100 * 2).toFixed()])
+            } else {
+              data.push([i, j, (Math.random() * 70).toFixed()])
+            }
+          }
         }
       }
       data = data.map(function (item) {
@@ -157,7 +165,7 @@ export default {
         },
         visualMap: {
           min: 0,
-          max: 100,
+          max: 200,
           calculable: true,
           orient: 'horizontal',
           left: 'center',
@@ -210,11 +218,25 @@ export default {
     this.setAttendChart()
     this.setHeatChart()
     this.setLineChart()
-    axios.getTrainList().then(_ => {
-      if (_.data.status === 'ok') {
-        this.trainList = _.data.result
+    // axios.getTrainList().then(_ => {
+    //   if (_.data.status === 'ok') {
+    //     this.trainList = _.data.result
+    //   }
+    // })
+    this.trainList = [
+      {
+        trainId: 1,
+        trainName: '2018春季第1次培训'
+      },
+      {
+        trainId: 2,
+        trainName: '2018春季第2次培训'
+      },
+      {
+        trainId: 3,
+        trainName: '2018春季第3次培训'
       }
-    })
+    ]
     window.onload = () => { this.selected = false }
   }
 }
