@@ -5,7 +5,9 @@
       <el-breadcrumb-item>签到上传</el-breadcrumb-item>
     </el-breadcrumb>
     <el-upload
-      class="upload-demo"
+      style="
+        margin-left: 35%;
+        margin-top: 200px;"
       drag
       ref="upload"
       :action="uploadURL"

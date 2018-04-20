@@ -1,6 +1,6 @@
 import axios from 'axios'
 export default {
-  baseURL: 'http://localhost:8080',
+  baseURL: 'http://http://localhost:8080',
   fileBaseURL: 'http://localhost:63342/',
   updateMember: '/updatemembers',
   updateNew: '/updatenew',
@@ -46,6 +46,12 @@ export default {
   },
   getCompMessage (params) {
     return axios.get(`/getcommessage?comId=${params}`)
+  },
+  getCompMembers (params) {
+    return axios.get(`/commembers?comId=${params}`)
+  },
+  getJoinExcel (params) {
+    return axios.get(`/getbaomingexcel?comId=${params}`)
   },
   addTrain (data) {
     return axios.post('addtrain', formToFormData(data))

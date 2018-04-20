@@ -29,6 +29,7 @@
         <template slot="title">竞赛管理</template>
         <el-menu-item index="/Competition">竞赛列表</el-menu-item>
         <el-menu-item index="/Comp/New">发布竞赛</el-menu-item>
+        <el-menu-item index="/Comp/CompJoin">比赛报名情况</el-menu-item>
     </el-submenu>
     <el-submenu index="5">
       <template slot="title">培训管理</template>

@@ -6,7 +6,7 @@
     </el-breadcrumb>
     <div>
       <span>{{year}}届人员信息表</span>
-      <el-button @click="downloadExcel">下载excel表格</el-button>
+      <el-button @click="downloadMember">下载excel表格</el-button>
       <el-table
         :data="memberList"
         style="width: 100%">
@@ -83,7 +83,7 @@ export default {
   methods: {
     downloadMember () {
       axios.downloadMember(this.year).then(_ => {
-        console.log(_.data)
+        window.open(axios.fileBaseURL + _.data.result, '_blank')
       })
     }
   },

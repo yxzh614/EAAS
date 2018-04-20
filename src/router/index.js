@@ -18,6 +18,7 @@ import NewMoney from '@/components/Good/NewMoney'
 import CompList from '@/components/Competition/CompList'
 import CompDetail from '@/components/Competition/CompDetail'
 import NewComp from '@/components/Competition/NewComp'
+import CompJoin from '@/components/Competition/CompJoin'
 
 import NewTrain from '@/components/Train/NewTrain'
 import TrainList from '@/components/Train/TrainList'
@@ -110,6 +111,11 @@ export default new Router({
       name: 'CompDetail',
       component: CompDetail,
       props: true // 比赛详情
+    },
+    {
+      path: '/Comp/CompJoin',
+      name: 'CompJoin',
+      component: CompJoin // 比赛报名情况
     },
     {
       path: '/Comp/New',
