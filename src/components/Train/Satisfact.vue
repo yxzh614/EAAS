@@ -12,23 +12,22 @@
         :value="train.trainId">
       </el-option>
     </el-select>
-    <el-carousel :autoplay="false" v-show="selected" height="550px" indicator-position="outside">
+    <el-carousel :autoplay="false" height="650px" indicator-position="outside">
       <el-carousel-item>
         <h3>学生评价统计</h3>
-        <iframe src="h.html" width="500px" height="300px" frameborder="0"></iframe>
+        <iframe src="h.html" width="700px" height="500px" frameborder="0"></iframe>
       </el-carousel-item>
       <el-carousel-item>
         <div class="chartWarp">
           <div id="attendChart"></div>
         </div>
       </el-carousel-item>
-      <el-carousel-item>
+      <!-- <el-carousel-item>
         <div class="chartWarp">
           <div id="heatChart"></div>
         </div>
-      </el-carousel-item>
+      </el-carousel-item> -->
     </el-carousel>
-    <div v-show="!selected" id="lineChart"></div>
   </div>
 </template>
 
@@ -43,7 +42,7 @@ export default {
       ciy: true,
       CiYunUrl: '',
       trainList: [
-        {}
+        {trainId: '', trainName: ''}
       ],
       attendChart: null,
       heatChart: null,
@@ -53,15 +52,18 @@ export default {
   methods: {
     handleChange (e) {
       this.selected = true
-      this.setAttendChart()
-      this.setHeatChart()
+      // this.setAttendChart()
+      // this.setHeatChart()
       axios.getCiYun(e).then(_ => {
         if (_.data.status === 'ok') {
           this.signList = _.data.result
         }
       })
+      axios.getChuXi(e).then(_ => {
+        this.setAttendChart(_.data.result.chuxi, _.data.result.weichuxi)
+      })
     },
-    setAttendChart () {
+    setAttendChart (chuxi, weichuxi) {
       let attendChartOption = {
         title: {
           text: '活动出席比例',
@@ -85,14 +87,14 @@ export default {
             center: ['50%', '60%'],
             data: [
               {
-                value: (Math.random() * 1000).toFixed(),
+                value: chuxi,
                 name: '出席',
                 itemStyle: {
                   color: '#00e5ff'
                 }
               },
               {
-                value: (Math.random() * 1000).toFixed(),
+                value: weichuxi,
                 name: '未出席',
                 itemStyle: {
                   color: '#f50057'
@@ -110,133 +112,103 @@ export default {
         ]
       }
       this.attendChart.setOption(attendChartOption)
-    },
-    setHeatChart () {
-      let X = []
-      let Y = []
-      for (let i = 1; i <= 20; i++) {
-        X.push(i.toString())
-        Y.push(i.toString())
-      }
-      var data = []
-      for (let i = 0; i < 20; i++) {
-        for (let j = 0; j < 20; j++) {
-          if (i > 17) {
-            data.push([i, j, (Math.random() * 100).toFixed()])
-          } else {
-            if (j > 3 && j < 17) {
-              data.push([i, j, (Math.random() * 100 * 2).toFixed()])
-            } else {
-              data.push([i, j, (Math.random() * 70).toFixed()])
-            }
-          }
-        }
-      }
-      data = data.map(function (item) {
-        return [item[1], item[0], item[2] || '-']
-      })
-      let heatChartOption = {
-        title: {
-          text: '培训区域热力图',
-          // subtext: '纯属虚构',
-          x: 'center'
-        },
-        tooltip: {
-          position: 'top'
-        },
-        animation: false,
-        grid: {
-          height: '75%',
-          y: '10%'
-        },
-        xAxis: {
-          type: 'category',
-          data: X,
-          splitArea: {
-            show: true
-          }
-        },
-        yAxis: {
-          type: 'category',
-          data: Y,
-          splitArea: {
-            show: true
-          }
-        },
-        visualMap: {
-          min: 0,
-          max: 200,
-          calculable: true,
-          orient: 'horizontal',
-          left: 'center',
-          bottom: '5%'
-        },
-        series: [{
-          name: '坐标',
-          type: 'heatmap',
-          data: data,
-          label: {
-            normal: {
-              show: true
-            }
-          },
-          itemStyle: {
-            emphasis: {
-              shadowBlur: 10,
-              shadowColor: 'rgba(0, 0, 0, 0.5)'
-            }
-          }
-        }]
-      }
-      this.heatChart.setOption(heatChartOption)
-    },
-    setLineChart () {
-      let option = {
-        title: {
-          text: '培训到场汇总',
-          x: 'center'
-        },
-        xAxis: {
-          type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        },
-        yAxis: {
-          type: 'value'
-        },
-        series: [{
-          data: [820, 932, 901, 934, 1290, 1330, 1320],
-          type: 'line'
-        }]
-      }
-      this.lineChart.setOption(option)
     }
+    // setHeatChart () {
+    //   let X = []
+    //   let Y = []
+    //   for (let i = 1; i <= 20; i++) {
+    //     X.push(i.toString())
+    //     Y.push(i.toString())
+    //   }
+    //   var data = []
+    //   for (let i = 0; i < 20; i++) {
+    //     for (let j = 0; j < 20; j++) {
+    //       if (i > 17) {
+    //         data.push([i, j, (Math.random() * 100).toFixed()])
+    //       } else {
+    //         if (j > 3 && j < 17) {
+    //           data.push([i, j, (Math.random() * 100 * 2).toFixed()])
+    //         } else {
+    //           data.push([i, j, (Math.random() * 70).toFixed()])
+    //         }
+    //       }
+    //     }
+    //   }
+    //   data = data.map(function (item) {
+    //     return [item[1], item[0], item[2] || '-']
+    //   })
+    //   let heatChartOption = {
+    //     title: {
+    //       text: '培训区域热力图',
+    //       // subtext: '纯属虚构',
+    //       x: 'center'
+    //     },
+    //     tooltip: {
+    //       position: 'top'
+    //     },
+    //     animation: false,
+    //     grid: {
+    //       height: '75%',
+    //       y: '10%'
+    //     },
+    //     xAxis: {
+    //       type: 'category',
+    //       data: X,
+    //       splitArea: {
+    //         show: true
+    //       }
+    //     },
+    //     yAxis: {
+    //       type: 'category',
+    //       data: Y,
+    //       splitArea: {
+    //         show: true
+    //       }
+    //     },
+    //     visualMap: {
+    //       min: 0,
+    //       max: 200,
+    //       calculable: true,
+    //       orient: 'horizontal',
+    //       left: 'center',
+    //       bottom: '5%'
+    //     },
+    //     series: [{
+    //       name: '坐标',
+    //       type: 'heatmap',
+    //       data: data,
+    //       label: {
+    //         normal: {
+    //           show: true
+    //         }
+    //       },
+    //       itemStyle: {
+    //         emphasis: {
+    //           shadowBlur: 10,
+    //           shadowColor: 'rgba(0, 0, 0, 0.5)'
+    //         }
+    //       }
+    //     }]
+    //   }
+    //   this.heatChart.setOption(heatChartOption)
+    // }
   },
   mounted () {
     this.attendChart = echarts.init(document.getElementById('attendChart'))
-    this.heatChart = echarts.init(document.getElementById('heatChart'))
-    this.lineChart = echarts.init(document.getElementById('lineChart'))
-    this.setAttendChart()
-    this.setHeatChart()
-    this.setLineChart()
+    // this.heatChart = echarts.init(document.getElementById('heatChart'))
+    // this.setHeatChart()
     // axios.getTrainList().then(_ => {
     //   if (_.data.status === 'ok') {
     //     this.trainList = _.data.result
     //   }
     // })
-    this.trainList = [
-      {
-        trainId: 1,
-        trainName: '2018春季第1次培训'
-      },
-      {
-        trainId: 2,
-        trainName: '2018春季第2次培训'
-      },
-      {
-        trainId: 3,
-        trainName: '2018春季第3次培训'
-      }
-    ]
+    axios.getTrainList().then(_ => {
+      this.trainList = _.data.result
+    })
+    this.train = this.trainList[0]
+    axios.getChuXi(this.trainList[0].trainId).then(_ => {
+      this.setAttendChart(_.data.result.chuxi, _.data.result.weichuxi)
+    })
     window.onload = () => { this.selected = false }
   }
 }
@@ -247,9 +219,9 @@ h3 {
   text-align: center;
 }
 #attendChart {
-  width: 500px;
-  height: 400px;
-  margin-left: 300px;
+  width: 700px;
+  height: 450px;
+  margin-left: 150px;
 }
 #heatChart {
   width: 700px;
@@ -262,8 +234,8 @@ h3 {
   margin-left: 100px;
 }
 #chartWarp {
-  width: 500px;
-  height: 300px;
+  width: 700px;
+  height: 450px;
   text-align: center;
 }
 .el-carousel {

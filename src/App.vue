@@ -1,7 +1,7 @@
 <template>
   <div id="app">
       <el-container class="main">
-    <el-header>
+    <el-header style="padding: 0 0 0 0;">
       <HeadBar/>
     </el-header>
     <el-container>
@@ -29,8 +29,6 @@ export default {
   },
   beforeCreate () {
     this.$router.beforeEach((to, from, next) => {
-      console.log(to.name)
-      console.log(Con.data.isLogged)
       if (to.name !== 'Sign') {
         if (!Con.data.isLogged) {
           this.$message({
@@ -56,7 +54,7 @@ export default {
   /* margin-top: 60px; */
 }
 .el-header {
-  padding: 0;
+  padding: 0 0 0 0;
 }
 .el-breadcrumb {
   margin-bottom: 15px;

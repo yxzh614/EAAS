@@ -79,7 +79,7 @@ export default {
       this.deleteGood(row.goodsId)
     },
     deleteGood (goodId) {
-      axios.deleteGood({goodid: goodId}).then(_ => {
+      axios.deleteGood({goodId: goodId}).then(_ => {
         if (_.data.status === 'ok') {
           this.goodsList.filter(_ => {
             if (_.goodId === goodId) {

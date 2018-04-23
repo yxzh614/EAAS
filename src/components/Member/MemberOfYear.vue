@@ -6,7 +6,7 @@
     </el-breadcrumb>
     <div>
       <span>{{year}}届人员信息表</span>
-      <el-button @click="downloadMember">下载excel表格</el-button>
+      <a class="el-button" :href="downloadURL" :download="downloadURL.split('\\').reverse()[0]">下载Excel表格</a>
       <el-table
         :data="memberList"
         style="width: 100%">
@@ -57,42 +57,52 @@ export default {
   data () {
     return {
       year: null,
-      memberList: []
+      memberList: [],
+      downloadURL: ''
     }
   },
   beforeRouteUpdate (to, from, next) { // switch among pages reusing this unit
+    console.log('switch', to.params.year)
     this.year = to.params.year
     axios.getMemberByYear(this.year).then(_ => {
       if (_.data.status === 'ok') {
         this.memberList = _.data.result
+        axios.downloadMember(this.year).then(_ => {
+          this.downloadURL = axios.fileBaseURL + _.data.result
+        })
       }
     })
     next()
   },
   beforeRouteEnter (to, from, next) {
-    console.log(to.params.year) // first time enter this unit
+    console.log('enter', to.params.year) // first time enter this unit
     next(_ => {
       _.year = to.params.year
       axios.getMemberByYear(_.year).then(_2 => {
         if (_2.data.status === 'ok') {
           _.memberList = _2.data.result
+          axios.downloadMember(_.year).then(_3 => {
+            _.downloadURL = axios.fileBaseURL + _3.data.result
+          })
         }
       })
     })
   },
   methods: {
     downloadMember () {
-      axios.downloadMember(this.year).then(_ => {
-        window.open(axios.fileBaseURL + _.data.result, '_blank')
-      })
     }
   },
   mounted () {
-    axios.getMemberByYear(this.year).then(_ => {
-      if (_.data.status === 'ok') {
-        this.memberList = _.data.result
-      }
-    })
+    if (this.year) {
+      axios.getMemberByYear(this.year).then(_ => {
+        if (_.data.status === 'ok') {
+          this.memberList = _.data.result
+          axios.downloadMember(this.year).then(_ => {
+            this.downloadURL = axios.fileBaseURL + _.data.result
+          })
+        }
+      })
+    }
   }
 }
 </script>

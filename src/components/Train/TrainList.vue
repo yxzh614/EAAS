@@ -7,9 +7,10 @@
     <el-card v-for="train in trainList" :key='train.trainId' class="box-card">
       <div slot="header" class="clearfix">
       <span>{{train.trainName}}</span>
-      <el-button style="float: right; padding: 3px 0" type="text" @click="goDetail(train.trainId)">详细信息</el-button>
+      <!-- <el-button style="float: right; padding: 3px 0" type="text" @click="goDetail(train.trainId)">详细信息</el-button> -->
       </div>
       <div class="text item">培训日期：{{train.fabuTime}}</div>
+      <div class="text item">培训地点：{{train.location}}</div>
     </el-card>
   </div>
 </template>
@@ -48,6 +49,9 @@ export default {
 <style>
   .text {
     font-size: 14px;
+    display: inline-block;
+    width: 49%;
+    text-align: center;
   }
 
   .item {

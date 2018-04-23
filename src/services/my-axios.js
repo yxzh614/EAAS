@@ -1,9 +1,9 @@
 import axios from 'axios'
 export default {
-  baseURL: 'http://http://localhost:8080',
+  baseURL: 'http://localhost:8080',
   fileBaseURL: 'http://localhost:63342/',
   updateMember: '/updatemembers',
-  updateNew: '/updatenew',
+  updateNew: '/zhaoxin',
   getYears () { // 获取共有多少届
     return axios.get('/getths')
   },
@@ -96,6 +96,9 @@ export default {
   },
   getTrainExcel (params) {
     return axios.get(`/gettrainexcel?year=${params}`)
+  },
+  getChuXi (params) {
+    return axios.get(`/getchuxi?trainId=${params}`)
   }
 }
 axios.defaults.baseURL = 'http://localhost:8080'

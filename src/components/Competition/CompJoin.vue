@@ -17,9 +17,17 @@
       :data="JoinList"
       style="width: 100%">
       <el-table-column
+        prop="id"
+        label="学号">
+      </el-table-column>
+      <el-table-column
         prop="name"
         label="姓名"
         width="180">
+        <template slot-scope="scope">
+          <span>{{scope.row.name}}</span>
+          <i v-if="scope.row.captain" class="el-icon-star-on"></i>
+        </template>
       </el-table-column>
       <el-table-column
         prop="school"
@@ -32,6 +40,10 @@
       <el-table-column
         prop="phone"
         label="电话">
+      </el-table-column>
+      <el-table-column
+        prop="mailbox"
+        label="邮箱">
       </el-table-column>
     </el-table>
   </div>
@@ -53,7 +65,7 @@ export default {
       axios.getCompMembers(e).then(_ => {
         this.JoinList = _.data.result
         axios.getJoinExcel(e).then(_ => {
-          this.downloadURL = _.data.result
+          this.downloadURL = axios.fileBaseURL + _.data.result
         })
       })
     }

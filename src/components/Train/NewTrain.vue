@@ -18,9 +18,6 @@
       <el-form-item label="培训地点">
         <el-input v-model="form.trainRoom" placeholder="请输入内容"></el-input>
       </el-form-item>
-      <el-form-item label="培训说明">
-        <el-input type="textarea" v-model="form.trainExplain"></el-input>
-      </el-form-item>
       <el-form-item label="">
         <el-button type="primary" @click="onSubmit">确定</el-button>
       </el-form-item>
@@ -38,8 +35,7 @@ export default {
       form: {
         trainTime: '',
         trainName: '',
-        trainRoom: '',
-        trainExplain: ''
+        trainRoom: ''
       }
     }
   },
