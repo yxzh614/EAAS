@@ -99,6 +99,9 @@ export default {
   },
   getChuXi (params) {
     return axios.get(`/getchuxi?trainId=${params}`)
+  },
+  getRSSI (params) {
+    return axios.get(`/getrssi?trainId=${params}`)
   }
 }
 axios.defaults.baseURL = 'http://localhost:8080'
