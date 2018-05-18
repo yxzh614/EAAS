@@ -4,7 +4,7 @@ export default {
   fileBaseURL: 'http://localhost:63342/',
   updateMember: '/updatemembers',
   updateNew: '/zhaoxin',
-  getYears () { // 获取共有多少届
+  getYears () { // 获取当前所有年
     return axios.get('/getths')
   },
   getAllComp () {
@@ -101,7 +101,7 @@ export default {
     return axios.get(`/getchuxi?trainId=${params}`)
   }
 }
-axios.defaults.baseURL = 'http://localhost:8080'
+axios.defaults.baseURL = 'http://www.echool.cn:8081'
 function formToFormData (form) {
   let formData = new FormData()
   for (let e in form) {

@@ -104,10 +104,10 @@ export default {
       for (let good of goods) {
         this.goodsList.push(good)
       }
-      axios.moneyLeft().then(_ => {
-        let data = _.data
-        this.money = data.result
-      })
+    })
+    axios.moneyLeft().then(_ => {
+      let data = _.data
+      this.money = data.result
     })
   }
 }
