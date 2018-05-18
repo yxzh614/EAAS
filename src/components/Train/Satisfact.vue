@@ -18,15 +18,8 @@
         <iframe src="h.html" width="700px" height="500px" frameborder="0"></iframe>
       </el-carousel-item>
       <el-carousel-item>
-        <div class="chartWarp">
-          <div id="attendChart"></div>
-        </div>
+        <div id="attendChart"></div>
       </el-carousel-item>
-      <!-- <el-carousel-item>
-        <div class="chartWarp">
-          <div id="heatChart"></div>
-        </div>
-      </el-carousel-item> -->
     </el-carousel>
   </div>
 </template>
@@ -60,148 +53,81 @@ export default {
         }
       })
       axios.getChuXi(e).then(_ => {
-        this.setAttendChart(_.data.result.chuxi, _.data.result.weichuxi)
+        axios.getRSSI(e).then(_2 => {
+          this.setAttendChart(_.data.result.chuxi, _.data.result.weichuxi, _2.data.result.ximienum, _2.data.result.allnum - _2.data.result.ximienum)
+        })
       })
     },
-    setAttendChart (chuxi, weichuxi) {
+    setAttendChart (chuxi, weichuxi, ximie, dianliang) {
       let attendChartOption = {
+        color: ['#448aff', '#ff5252', '#e040fb', '#69f0ae', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
         title: {
-          text: '活动出席比例',
-          // subtext: '纯属虚构',
+          text: '活动分析',
+          subtext: '到场比例图                                                                                  手机亮屏占比图',
           x: 'center'
         },
         tooltip: {
           trigger: 'item',
           formatter: '{a} <br/>{b} : {c} ({d}%)'
         },
-        legend: {
-          orient: 'vertical',
-          left: 'left',
-          data: ['出席', '未出席']
+        toolbox: {
+          show: true,
+          feature: {
+            mark: {show: true},
+            magicType: {
+              show: true,
+              type: ['pie', 'funnel']
+            },
+            saveAsImage: {show: true}
+          }
         },
+        calculable: true,
         series: [
           {
-            name: '',
+            name: '到场情况',
             type: 'pie',
-            radius: '55%',
-            center: ['50%', '60%'],
-            data: [
-              {
-                value: chuxi,
-                name: '出席',
-                itemStyle: {
-                  color: '#00e5ff'
-                }
+            radius: [20, 110],
+            center: ['25%', '50%'],
+            roseType: 'radius',
+            label: {
+              normal: {
+                show: true
               },
-              {
-                value: weichuxi,
-                name: '未出席',
-                itemStyle: {
-                  color: '#f50057'
-                }
-              }
-            ],
-            itemStyle: {
               emphasis: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                show: true
               }
-            }
+            },
+            lableLine: {
+              normal: {
+                show: true
+              },
+              emphasis: {
+                show: true
+              }
+            },
+            data: [
+                {value: chuxi, name: '出席'},
+                {value: weichuxi, name: '未出席'}
+            ]
+          },
+          {
+            name: '亮屏比例',
+            type: 'pie',
+            radius: [30, 110],
+            center: ['75%', '50%'],
+            roseType: 'radius',
+            data: [
+              {value: ximie, name: '熄灭'},
+              {value: dianliang, name: '点亮'}
+            ]
           }
         ]
       }
       this.attendChart.setOption(attendChartOption)
     }
-    // setHeatChart () {
-    //   let X = []
-    //   let Y = []
-    //   for (let i = 1; i <= 20; i++) {
-    //     X.push(i.toString())
-    //     Y.push(i.toString())
-    //   }
-    //   var data = []
-    //   for (let i = 0; i < 20; i++) {
-    //     for (let j = 0; j < 20; j++) {
-    //       if (i > 17) {
-    //         data.push([i, j, (Math.random() * 100).toFixed()])
-    //       } else {
-    //         if (j > 3 && j < 17) {
-    //           data.push([i, j, (Math.random() * 100 * 2).toFixed()])
-    //         } else {
-    //           data.push([i, j, (Math.random() * 70).toFixed()])
-    //         }
-    //       }
-    //     }
-    //   }
-    //   data = data.map(function (item) {
-    //     return [item[1], item[0], item[2] || '-']
-    //   })
-    //   let heatChartOption = {
-    //     title: {
-    //       text: '培训区域热力图',
-    //       // subtext: '纯属虚构',
-    //       x: 'center'
-    //     },
-    //     tooltip: {
-    //       position: 'top'
-    //     },
-    //     animation: false,
-    //     grid: {
-    //       height: '75%',
-    //       y: '10%'
-    //     },
-    //     xAxis: {
-    //       type: 'category',
-    //       data: X,
-    //       splitArea: {
-    //         show: true
-    //       }
-    //     },
-    //     yAxis: {
-    //       type: 'category',
-    //       data: Y,
-    //       splitArea: {
-    //         show: true
-    //       }
-    //     },
-    //     visualMap: {
-    //       min: 0,
-    //       max: 200,
-    //       calculable: true,
-    //       orient: 'horizontal',
-    //       left: 'center',
-    //       bottom: '5%'
-    //     },
-    //     series: [{
-    //       name: '坐标',
-    //       type: 'heatmap',
-    //       data: data,
-    //       label: {
-    //         normal: {
-    //           show: true
-    //         }
-    //       },
-    //       itemStyle: {
-    //         emphasis: {
-    //           shadowBlur: 10,
-    //           shadowColor: 'rgba(0, 0, 0, 0.5)'
-    //         }
-    //       }
-    //     }]
-    //   }
-    //   this.heatChart.setOption(heatChartOption)
-    // }
   },
   mounted () {
     this.attendChart = echarts.init(document.getElementById('attendChart'))
-    // this.heatChart = echarts.init(document.getElementById('heatChart'))
-    // this.setHeatChart()
-    // axios.getTrainList().then(_ => {
-    //   if (_.data.status === 'ok') {
-    //     this.trainList = _.data.result
-    //   }
-    // })
     axios.getTrainList().then(_ => {
       this.trainList = _.data.result
     })
@@ -219,24 +145,9 @@ h3 {
   text-align: center;
 }
 #attendChart {
-  width: 700px;
-  height: 450px;
-  margin-left: 150px;
-}
-#heatChart {
-  width: 700px;
+  width: 1000px;
   height: 550px;
-  margin-left: 15%;
-}
-#lineChart {
-  width: 700px;
-  height: 550px;
-  margin-left: 100px;
-}
-#chartWarp {
-  width: 700px;
-  height: 450px;
-  text-align: center;
+  margin-left: 0px;
 }
 .el-carousel {
   width: 100%;
