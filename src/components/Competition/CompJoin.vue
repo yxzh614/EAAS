@@ -65,7 +65,7 @@ export default {
       axios.getCompMembers(e).then(_ => {
         this.JoinList = _.data.result
         axios.getJoinExcel(e).then(_ => {
-          this.downloadURL = axios.fileBaseURL + _.data.result
+          this.downloadURL = axios.fileBaseURL + '?path=' + _.data.result
         })
       })
     }

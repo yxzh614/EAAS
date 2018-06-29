@@ -69,7 +69,7 @@ export default {
         if (_.data.status === 'ok') {
           this.signList = _.data.result
           axios.getTrainExcel(e[0]).then(_ => {
-            this.downloadURL = axios.fileBaseURL + _.data.result
+            this.downloadURL = axios.fileBaseURL + '?path=' + _.data.result
           })
         }
       })

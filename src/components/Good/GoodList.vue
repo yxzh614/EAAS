@@ -71,7 +71,7 @@ export default {
       //   case 9: return 'static/dx.jpg'
       //   case 10: return 'static/dpj.jpg'
       // }
-      return axios.fileBaseURL + e
+      return axios.fileBaseURL + '?path=' + e
     }
   },
   methods: {

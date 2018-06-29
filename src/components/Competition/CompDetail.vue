@@ -32,8 +32,8 @@
       <div class="text item">
         发布日期:{{compDetail.fabuTime}}
       </div>
-      <a class="el-button" v-if="compDetail.competationFujian1" target="_blank" :href="fileURL + compDetail.competationFujian1">下载附件:{{(compDetail.competationFujian1).split('\\').reverse()[0]}}</a>
-      <a class="el-button" v-if="compDetail.competationFujian2" target="_blank" :href="fileURL + compDetail.competationFujian2">下载附件:{{(compDetail.competationFujian1).split('\\').reverse()[0]}}</a>
+      <a class="el-button" v-if="compDetail.competationFujian1" target="_blank" :href="fileURL + '?path=' + compDetail.competationFujian1">下载附件:{{(compDetail.competationFujian1).split('\\').reverse()[0]}}</a>
+      <a class="el-button" v-if="compDetail.competationFujian2" target="_blank" :href="fileURL + '?path=' + compDetail.competationFujian2">下载附件:{{(compDetail.competationFujian1).split('\\').reverse()[0]}}</a>
     </el-card>
   </div>
 </template>

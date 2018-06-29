@@ -1,7 +1,7 @@
 import axios from 'axios'
 export default {
-  baseURL: 'http://localhost:8080',
-  fileBaseURL: 'http://localhost:63342/',
+  baseURL: 'http://www.echool.cn:8081',
+  fileBaseURL: 'http://www.echool.cn:8081/download',
   updateMember: '/updatemembers',
   updateNew: '/zhaoxin',
   getYears () { // 获取当前所有年

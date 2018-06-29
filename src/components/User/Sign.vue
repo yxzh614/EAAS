@@ -23,8 +23,8 @@ export default {
   data () {
     return {
       form: {
-        adminId: 'admin',
-        password: '666666'
+        adminId: '',
+        password: ''
       }
     }
   },

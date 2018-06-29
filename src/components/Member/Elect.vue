@@ -32,7 +32,7 @@
       show-icon>
     </el-alert>
     <el-tooltip class="item" effect="dark" content="换届模板.xls" placement="bottom-start">
-    <a class="el-button" target="_blank" style="background-color: #b2b2e0;"  :href="fileURL + 'st/static/换届模板.xls'" download="换届模板.xls">换届模板</a></el-tooltip>
+    <a class="el-button" target="_blank" style="background-color: #b2b2e0;"  :href="fileURL + '?path=' + 'C://eaas//招新换届模板//zhaoxin.xls'" download="zhaoxin.xls">换届模板</a></el-tooltip>
   </div>
 </template>
 

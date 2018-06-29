@@ -68,7 +68,7 @@ export default {
       if (_.data.status === 'ok') {
         this.memberList = _.data.result
         axios.downloadMember(this.year).then(_ => {
-          this.downloadURL = axios.fileBaseURL + _.data.result
+          this.downloadURL = axios.fileBaseURL + '?path=' + _.data.result
         })
       }
     })
@@ -82,7 +82,7 @@ export default {
         if (_2.data.status === 'ok') {
           _.memberList = _2.data.result
           axios.downloadMember(_.year).then(_3 => {
-            _.downloadURL = axios.fileBaseURL + _3.data.result
+            _.downloadURL = axios.fileBaseURL + '?path=' + _3.data.result
           })
         }
       })
